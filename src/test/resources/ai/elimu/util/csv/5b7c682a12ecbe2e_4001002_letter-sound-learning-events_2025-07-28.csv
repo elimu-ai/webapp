@@ -1,0 +1,23 @@
+id,timestamp,package_name,additional_data,research_experiment,experiment_group,letter_sound_letters,letter_sound_sounds,letter_sound_id
+44,1753693734,ai.elimu.herufi.debug,,0,1,[น],[n],7
+45,1753693740,ai.elimu.herufi.debug,,0,1,[ก],[k],3
+46,1753693756,ai.elimu.herufi.debug,,0,1,[◌ั],[a],34
+47,1753694783,ai.elimu.herufi.debug,,0,1,[น],[n],7
+48,1753694800,ai.elimu.herufi.debug,,0,1,[ก],[k],3
+49,1753694805,ai.elimu.herufi.debug,,0,1,[◌ั],[a],34
+50,1753694807,ai.elimu.herufi.debug,,0,1,[◌า],[aː],13
+51,1753694813,ai.elimu.herufi.debug,,0,1,[◌อ],[ɔː],31
+52,1753694819,ai.elimu.herufi.debug,,0,1,[ข],[kʰ],38
+53,1753694821,ai.elimu.herufi.debug,,0,1,[จ],[tɕ],24
+54,1753694825,ai.elimu.herufi.debug,,0,1,[ไ◌],"[a, j]",40
+55,1753694846,ai.elimu.herufi.debug,,0,1,[ฉ],[tɕʰ],44
+56,1753694865,ai.elimu.herufi.debug,,0,1,[เ◌า],"[a, w]",69
+57,1753694871,ai.elimu.herufi.debug,,0,1,[แ◌ะ],[ɛ],70
+58,1753694877,ai.elimu.herufi.debug,,0,1,[เ◌อ],[ɤː],72
+59,1753694881,ai.elimu.herufi.debug,,0,1,[น],"[n, o]",62
+60,1753694885,ai.elimu.herufi.debug,,0,1,[เ◌ย],"[ɤː, j]",79
+61,1753694893,ai.elimu.herufi.debug,,0,1,"[ห, ล]",[l],65
+62,1753694897,ai.elimu.herufi.debug,,0,1,"[ห, ล]",[l],65
+63,1753694918,ai.elimu.herufi.debug,,0,1,"[ห, ย]",[y],59
+64,1753694930,ai.elimu.herufi.debug,,0,1,"[ท, ร]",[s],42
+65,1753695261,ai.elimu.herufi.debug,,0,1,[น],[n],7

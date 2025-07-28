@@ -54,8 +54,8 @@ public class LetterSoundLearningEventsCsvExportController {
               "additional_data",
               "research_experiment",
               "experiment_group",
-              // "letter_sound_letters",
-              // "letter_sound_sounds",
+              "letter_sound_letters",
+              "letter_sound_sounds",
               "letter_sound_id"
           ).build();
       StringWriter stringWriter = new StringWriter();
@@ -69,8 +69,8 @@ public class LetterSoundLearningEventsCsvExportController {
             event.getAdditionalData(),
             (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
             (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
-            // letterSoundLearningEvent.getLetterSoundLetters(),
-            // letterSoundLearningEvent.getLetterSoundSounds(),
+            event.getLetterSoundLetters(),
+            event.getLetterSoundSounds(),
             event.getLetterSoundId()
         );
       }

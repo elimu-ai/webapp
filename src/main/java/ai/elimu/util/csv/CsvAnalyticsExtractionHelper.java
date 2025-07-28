@@ -35,86 +35,6 @@ import org.apache.commons.lang.StringUtils;
  */
 @Slf4j
 public class CsvAnalyticsExtractionHelper {
-
-    public static List<LetterSoundAssessmentEvent> extractLetterSoundAssessmentEvents(File csvFile) {
-        log.info("extractLetterSoundAssessmentEvents");
-
-        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
-        log.info("versionCode: " + versionCode);
-
-        List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = new ArrayList<>();
-
-        // Iterate each row in the CSV file
-        Path csvFilePath = Paths.get(csvFile.toURI());
-        log.info("csvFilePath: " + csvFilePath);
-        try {
-            Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
-            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
-            CSVParser csvParser = new CSVParser(reader, csvFormat);
-            for (CSVRecord csvRecord : csvParser) {
-                log.info("csvRecord: " + csvRecord);
-                
-                // Convert from CSV to Java
-
-                LetterSoundAssessmentEvent letterSoundAssessmentEvent = new LetterSoundAssessmentEvent();
-                
-                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
-                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-                timestamp.setTimeInMillis(timestampInMillis);
-                letterSoundAssessmentEvent.setTimestamp(timestamp);
-                
-                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
-                letterSoundAssessmentEvent.setAndroidId(androidId);
-                
-                String packageName = csvRecord.get("package_name");
-                letterSoundAssessmentEvent.setPackageName(packageName);
-
-                Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
-                letterSoundAssessmentEvent.setMasteryScore(masteryScore);
-
-                Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
-                letterSoundAssessmentEvent.setTimeSpentMs(timeSpentMs);
-
-                String additionalData = csvRecord.get("additional_data");
-                if (StringUtils.isNotBlank(additionalData)) {
-                    letterSoundAssessmentEvent.setAdditionalData(additionalData);
-                }
-
-                if (versionCode >= 3005009) {
-                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
-                    
-                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
-                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                        letterSoundAssessmentEvent.setResearchExperiment(researchExperiment);
-                    }
-
-                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
-                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                        letterSoundAssessmentEvent.setExperimentGroup(experimentGroup);
-                    }
-                }
-
-                String letterSoundLetters = csvRecord.get("letter_sound_letters");
-                letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundLetters);
-
-                String letterSoundSounds = csvRecord.get("letter_sound_sounds");
-                letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundSounds);
-
-                Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
-                letterSoundAssessmentEvent.setLetterSoundId(letterSoundId);
-
-                letterSoundAssessmentEvents.add(letterSoundAssessmentEvent);
-            }
-            csvParser.close();
-        } catch (IOException ex) {
-            log.error(ex.getMessage());
-        }
-
-        return letterSoundAssessmentEvents;
-    }
     
     public static List<LetterSoundLearningEvent> extractLetterSoundLearningEvents(File csvFile) {
         log.info("extractLetterSoundLearningEvents");
@@ -181,9 +101,24 @@ public class CsvAnalyticsExtractionHelper {
                     }
                 }
 
-                // TODO: letter_sound_letters
+                if (versionCode >= 4001000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/4.1.0
 
-                // TODO: letter_sound_sounds
+                    // Convert letters from String to String list. E.g. "[ห, ล]" --> ["ห", "ล"]
+                    String letterSoundLettersAsString = csvRecord.get("letter_sound_letters");
+                    String[] letterSoundLettersAsArray = letterSoundLettersAsString.substring(1, letterSoundLettersAsString.length() - 1).split(", ");
+                    List<String> letterSoundLetters = Arrays.asList(letterSoundLettersAsArray);
+                    letterSoundLearningEvent.setLetterSoundLetters(letterSoundLetters);
+
+                    // Convert sounds from String to String list. E.g. "[a, w]" --> ["a", "w"]
+                    String letterSoundSoundsAsString = csvRecord.get("letter_sound_sounds");
+                    String[] letterSoundSoundsAsArray = letterSoundSoundsAsString.substring(1, letterSoundSoundsAsString.length() - 1).split(", ");
+                    List<String> letterSoundSounds = Arrays.asList(letterSoundSoundsAsArray);
+                    letterSoundLearningEvent.setLetterSoundSounds(letterSoundSounds);
+                } else {
+                    letterSoundLearningEvent.setLetterSoundLetters(new ArrayList<>());
+                    letterSoundLearningEvent.setLetterSoundSounds(new ArrayList<>());
+                }
 
                 Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
                 letterSoundLearningEvent.setLetterSoundId(letterSoundId);
@@ -198,14 +133,13 @@ public class CsvAnalyticsExtractionHelper {
         return letterSoundLearningEvents;
     }
 
-    
-    public static List<NumberAssessmentEvent> extractNumberAssessmentEvents(File csvFile) {
-        log.info("extractNumberAssessmentEvents");
+    public static List<LetterSoundAssessmentEvent> extractLetterSoundAssessmentEvents(File csvFile) {
+        log.info("extractLetterSoundAssessmentEvents");
 
         Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
         log.info("versionCode: " + versionCode);
 
-        List<NumberAssessmentEvent> numberAssessmentEvents = new ArrayList<>();
+        List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = new ArrayList<>();
 
         // Iterate each row in the CSV file
         Path csvFilePath = Paths.get(csvFile.toURI());
@@ -220,103 +154,28 @@ public class CsvAnalyticsExtractionHelper {
                 
                 // Convert from CSV to Java
 
-                NumberAssessmentEvent numberAssessmentEvent = new NumberAssessmentEvent();
+                LetterSoundAssessmentEvent letterSoundAssessmentEvent = new LetterSoundAssessmentEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp").substring(0, 10)) * 1_000;
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
-                numberAssessmentEvent.setTimestamp(timestamp);
+                letterSoundAssessmentEvent.setTimestamp(timestamp);
                 
                 String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
-                numberAssessmentEvent.setAndroidId(androidId);
+                letterSoundAssessmentEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
-                numberAssessmentEvent.setPackageName(packageName);
+                letterSoundAssessmentEvent.setPackageName(packageName);
 
                 Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
-                numberAssessmentEvent.setMasteryScore(masteryScore);
+                letterSoundAssessmentEvent.setMasteryScore(masteryScore);
 
                 Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
-                numberAssessmentEvent.setTimeSpentMs(timeSpentMs);
+                letterSoundAssessmentEvent.setTimeSpentMs(timeSpentMs);
 
                 String additionalData = csvRecord.get("additional_data");
                 if (StringUtils.isNotBlank(additionalData)) {
-                    numberAssessmentEvent.setAdditionalData(additionalData);
-                }
-
-                int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                numberAssessmentEvent.setResearchExperiment(researchExperiment);
-
-                int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                numberAssessmentEvent.setExperimentGroup(experimentGroup);
-
-                Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
-                numberAssessmentEvent.setNumberValue(numberValue);
-
-                // String numberSymbol = csvRecord.get("number_symbol");
-                // numberAssessmentEvent.setNumberSymbol(numberSymbol);
-
-                if (StringUtils.isNotBlank(csvRecord.get("number_id"))) {
-                    Long numberId = Long.valueOf(csvRecord.get("number_id"));
-                    numberAssessmentEvent.setNumberId(numberId);
-                }
-
-                numberAssessmentEvents.add(numberAssessmentEvent);
-            }
-            csvParser.close();
-        } catch (IOException ex) {
-            log.error(ex.getMessage());
-        }
-
-        return numberAssessmentEvents;
-    }
-
-    public static List<NumberLearningEvent> extractNumberLearningEvents(File csvFile) {
-        log.info("extractNumberLearningEvents");
-
-        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
-        log.info("versionCode: " + versionCode);
-
-        List<NumberLearningEvent> numberLearningEvents = new ArrayList<>();
-
-        // Iterate each row in the CSV file
-        Path csvFilePath = Paths.get(csvFile.toURI());
-        log.info("csvFilePath: " + csvFilePath);
-        try {
-            Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
-            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
-            CSVParser csvParser = new CSVParser(reader, csvFormat);
-            for (CSVRecord csvRecord : csvParser) {
-                log.info("csvRecord: " + csvRecord);
-                
-                // Convert from CSV to Java
-
-                NumberLearningEvent numberLearningEvent = new NumberLearningEvent();
-                
-                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp").substring(0, 10)) * 1_000;
-                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-                timestamp.setTimeInMillis(timestampInMillis);
-                numberLearningEvent.setTimestamp(timestamp);
-                
-                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
-                numberLearningEvent.setAndroidId(androidId);
-                
-                String packageName = csvRecord.get("package_name");
-                numberLearningEvent.setPackageName(packageName);
-
-                String additionalData = csvRecord.get("additional_data");
-                if (StringUtils.isNotBlank(additionalData)) {
-                    numberLearningEvent.setAdditionalData(additionalData);
-                }
-
-                if (versionCode < 4000033) {
-                    if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
-                        LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                        numberLearningEvent.setLearningEventType(learningEventType);
-                    }
+                    letterSoundAssessmentEvent.setAdditionalData(additionalData);
                 }
 
                 if (versionCode >= 3005009) {
@@ -325,126 +184,48 @@ public class CsvAnalyticsExtractionHelper {
                     if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
                         int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
                         ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                        numberLearningEvent.setResearchExperiment(researchExperiment);
+                        letterSoundAssessmentEvent.setResearchExperiment(researchExperiment);
                     }
 
                     if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
                         int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
                         ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                        numberLearningEvent.setExperimentGroup(experimentGroup);
+                        letterSoundAssessmentEvent.setExperimentGroup(experimentGroup);
                     }
                 }
 
-                Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
-                numberLearningEvent.setNumberValue(numberValue);
+                if (versionCode >= 4001000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/4.1.0
 
-                if (StringUtils.isNotBlank(csvRecord.get("number_symbol"))) {
-                    String numberSymbol = csvRecord.get("number_symbol");
-                    numberLearningEvent.setNumberSymbol(numberSymbol);
-                }
+                    // Convert letters from String to String list. E.g. "[ห, ล]" --> ["ห", "ล"]
+                    String letterSoundLettersAsString = csvRecord.get("letter_sound_letters");
+                    String[] letterSoundLettersAsArray = letterSoundLettersAsString.substring(1, letterSoundLettersAsString.length() - 1).split(", ");
+                    List<String> letterSoundLetters = Arrays.asList(letterSoundLettersAsArray);
+                    letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundLetters);
 
-                if (StringUtils.isNotBlank(csvRecord.get("number_id"))) {
-                    Long numberId = Long.valueOf(csvRecord.get("number_id"));
-                    numberLearningEvent.setNumberId(numberId);
-                }
-
-                numberLearningEvents.add(numberLearningEvent);
-            }
-            csvParser.close();
-        } catch (IOException ex) {
-            log.error(ex.getMessage());
-        }
-
-        return numberLearningEvents;
-    }
-
-    
-    public static List<WordAssessmentEvent> extractWordAssessmentEvents(File csvFile) {
-        log.info("extractWordAssessmentEvents");
-
-        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
-        log.info("versionCode: " + versionCode);
-
-        List<WordAssessmentEvent> wordAssessmentEvents = new ArrayList<>();
-
-        // Iterate each row in the CSV file
-        Path csvFilePath = Paths.get(csvFile.toURI());
-        log.info("csvFilePath: " + csvFilePath);
-        try {
-            Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
-            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
-            CSVParser csvParser = new CSVParser(reader, csvFormat);
-            for (CSVRecord csvRecord : csvParser) {
-                log.info("csvRecord: " + csvRecord);
-                
-                // Convert from CSV to Java
-
-                WordAssessmentEvent wordAssessmentEvent = new WordAssessmentEvent();
-                
-                String timestampColumnName = null;
-                if (versionCode < 3004000) {
-                    timestampColumnName = "time";
+                    // Convert sounds from String to String list. E.g. "[a, w]" --> ["a", "w"]
+                    String letterSoundSoundsAsString = csvRecord.get("letter_sound_sounds");
+                    String[] letterSoundSoundsAsArray = letterSoundSoundsAsString.substring(1, letterSoundSoundsAsString.length() - 1).split(", ");
+                    List<String> letterSoundSounds = Arrays.asList(letterSoundSoundsAsArray);
+                    letterSoundAssessmentEvent.setLetterSoundSounds(letterSoundSounds);
                 } else {
-                    // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
-                    timestampColumnName = "timestamp";
-                }
-                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName).substring(0, 10)) * 1_000;
-                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-                timestamp.setTimeInMillis(timestampInMillis);
-                wordAssessmentEvent.setTimestamp(timestamp);
-                
-                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
-                wordAssessmentEvent.setAndroidId(androidId);
-                
-                String packageName = csvRecord.get("package_name");
-                wordAssessmentEvent.setPackageName(packageName);
-
-                Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
-                wordAssessmentEvent.setMasteryScore(masteryScore);
-
-                Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
-                wordAssessmentEvent.setTimeSpentMs(timeSpentMs);
-
-                if (versionCode >= 3006000) {
-                    // https://github.com/elimu-ai/analytics/releases/tag/3.6.0
-                    String additionalData = csvRecord.get("additional_data");
-                    if (StringUtils.isNotBlank(additionalData)) {
-                        wordAssessmentEvent.setAdditionalData(additionalData);
-                    }
+                    letterSoundAssessmentEvent.setLetterSoundLetters(new ArrayList<>());
+                    letterSoundAssessmentEvent.setLetterSoundSounds(new ArrayList<>());
                 }
 
-                if (versionCode >= 3005009) {
-                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
-                    
-                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
-                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                        wordAssessmentEvent.setResearchExperiment(researchExperiment);
-                    }
+                Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
+                letterSoundAssessmentEvent.setLetterSoundId(letterSoundId);
 
-                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
-                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                        wordAssessmentEvent.setExperimentGroup(experimentGroup);
-                    }
-                }
-
-                String wordText = csvRecord.get("word_text");
-                wordAssessmentEvent.setWordText(wordText);
-
-                Long wordId = Long.valueOf(csvRecord.get("word_id"));
-                wordAssessmentEvent.setWordId(wordId);
-
-                wordAssessmentEvents.add(wordAssessmentEvent);
+                letterSoundAssessmentEvents.add(letterSoundAssessmentEvent);
             }
             csvParser.close();
         } catch (IOException ex) {
             log.error(ex.getMessage());
         }
 
-        return wordAssessmentEvents;
+        return letterSoundAssessmentEvents;
     }
+
     
     public static List<WordLearningEvent> extractWordLearningEvents(File csvFile) {
         log.info("extractWordLearningEvents");
@@ -532,6 +313,253 @@ public class CsvAnalyticsExtractionHelper {
         }
 
         return wordLearningEvents;
+    }
+    
+    public static List<WordAssessmentEvent> extractWordAssessmentEvents(File csvFile) {
+        log.info("extractWordAssessmentEvents");
+
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
+        List<WordAssessmentEvent> wordAssessmentEvents = new ArrayList<>();
+
+        // Iterate each row in the CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        log.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
+            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                log.info("csvRecord: " + csvRecord);
+                
+                // Convert from CSV to Java
+
+                WordAssessmentEvent wordAssessmentEvent = new WordAssessmentEvent();
+                
+                String timestampColumnName = null;
+                if (versionCode < 3004000) {
+                    timestampColumnName = "time";
+                } else {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
+                    timestampColumnName = "timestamp";
+                }
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName).substring(0, 10)) * 1_000;
+                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                timestamp.setTimeInMillis(timestampInMillis);
+                wordAssessmentEvent.setTimestamp(timestamp);
+                
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
+                wordAssessmentEvent.setAndroidId(androidId);
+                
+                String packageName = csvRecord.get("package_name");
+                wordAssessmentEvent.setPackageName(packageName);
+
+                Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
+                wordAssessmentEvent.setMasteryScore(masteryScore);
+
+                Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
+                wordAssessmentEvent.setTimeSpentMs(timeSpentMs);
+
+                if (versionCode >= 3006000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.6.0
+                    String additionalData = csvRecord.get("additional_data");
+                    if (StringUtils.isNotBlank(additionalData)) {
+                        wordAssessmentEvent.setAdditionalData(additionalData);
+                    }
+                }
+
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        wordAssessmentEvent.setResearchExperiment(researchExperiment);
+                    }
+
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        wordAssessmentEvent.setExperimentGroup(experimentGroup);
+                    }
+                }
+
+                String wordText = csvRecord.get("word_text");
+                wordAssessmentEvent.setWordText(wordText);
+
+                Long wordId = Long.valueOf(csvRecord.get("word_id"));
+                wordAssessmentEvent.setWordId(wordId);
+
+                wordAssessmentEvents.add(wordAssessmentEvent);
+            }
+            csvParser.close();
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+
+        return wordAssessmentEvents;
+    }
+
+
+    public static List<NumberLearningEvent> extractNumberLearningEvents(File csvFile) {
+        log.info("extractNumberLearningEvents");
+
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
+        List<NumberLearningEvent> numberLearningEvents = new ArrayList<>();
+
+        // Iterate each row in the CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        log.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
+            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                log.info("csvRecord: " + csvRecord);
+                
+                // Convert from CSV to Java
+
+                NumberLearningEvent numberLearningEvent = new NumberLearningEvent();
+                
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp").substring(0, 10)) * 1_000;
+                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                timestamp.setTimeInMillis(timestampInMillis);
+                numberLearningEvent.setTimestamp(timestamp);
+                
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
+                numberLearningEvent.setAndroidId(androidId);
+                
+                String packageName = csvRecord.get("package_name");
+                numberLearningEvent.setPackageName(packageName);
+
+                String additionalData = csvRecord.get("additional_data");
+                if (StringUtils.isNotBlank(additionalData)) {
+                    numberLearningEvent.setAdditionalData(additionalData);
+                }
+
+                if (versionCode < 4000033) {
+                    if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                        LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                        numberLearningEvent.setLearningEventType(learningEventType);
+                    }
+                }
+
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        numberLearningEvent.setResearchExperiment(researchExperiment);
+                    }
+
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        numberLearningEvent.setExperimentGroup(experimentGroup);
+                    }
+                }
+
+                Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
+                numberLearningEvent.setNumberValue(numberValue);
+
+                if (StringUtils.isNotBlank(csvRecord.get("number_symbol"))) {
+                    String numberSymbol = csvRecord.get("number_symbol");
+                    numberLearningEvent.setNumberSymbol(numberSymbol);
+                }
+
+                if (StringUtils.isNotBlank(csvRecord.get("number_id"))) {
+                    Long numberId = Long.valueOf(csvRecord.get("number_id"));
+                    numberLearningEvent.setNumberId(numberId);
+                }
+
+                numberLearningEvents.add(numberLearningEvent);
+            }
+            csvParser.close();
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+
+        return numberLearningEvents;
+    }
+
+    public static List<NumberAssessmentEvent> extractNumberAssessmentEvents(File csvFile) {
+        log.info("extractNumberAssessmentEvents");
+
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
+        List<NumberAssessmentEvent> numberAssessmentEvents = new ArrayList<>();
+
+        // Iterate each row in the CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        log.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
+            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                log.info("csvRecord: " + csvRecord);
+                
+                // Convert from CSV to Java
+
+                NumberAssessmentEvent numberAssessmentEvent = new NumberAssessmentEvent();
+                
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp").substring(0, 10)) * 1_000;
+                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                timestamp.setTimeInMillis(timestampInMillis);
+                numberAssessmentEvent.setTimestamp(timestamp);
+                
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
+                numberAssessmentEvent.setAndroidId(androidId);
+                
+                String packageName = csvRecord.get("package_name");
+                numberAssessmentEvent.setPackageName(packageName);
+
+                Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
+                numberAssessmentEvent.setMasteryScore(masteryScore);
+
+                Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
+                numberAssessmentEvent.setTimeSpentMs(timeSpentMs);
+
+                String additionalData = csvRecord.get("additional_data");
+                if (StringUtils.isNotBlank(additionalData)) {
+                    numberAssessmentEvent.setAdditionalData(additionalData);
+                }
+
+                int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                numberAssessmentEvent.setResearchExperiment(researchExperiment);
+
+                int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                numberAssessmentEvent.setExperimentGroup(experimentGroup);
+
+                Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
+                numberAssessmentEvent.setNumberValue(numberValue);
+
+                // String numberSymbol = csvRecord.get("number_symbol");
+                // numberAssessmentEvent.setNumberSymbol(numberSymbol);
+
+                if (StringUtils.isNotBlank(csvRecord.get("number_id"))) {
+                    Long numberId = Long.valueOf(csvRecord.get("number_id"));
+                    numberAssessmentEvent.setNumberId(numberId);
+                }
+
+                numberAssessmentEvents.add(numberAssessmentEvent);
+            }
+            csvParser.close();
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+
+        return numberAssessmentEvents;
     }
 
     
