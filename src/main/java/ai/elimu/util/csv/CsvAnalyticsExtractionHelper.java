@@ -115,6 +115,9 @@ public class CsvAnalyticsExtractionHelper {
                     String[] letterSoundSoundsAsArray = letterSoundSoundsAsString.substring(1, letterSoundSoundsAsString.length() - 1).split(", ");
                     List<String> letterSoundSounds = Arrays.asList(letterSoundSoundsAsArray);
                     letterSoundLearningEvent.setLetterSoundSounds(letterSoundSounds);
+                } else {
+                    letterSoundLearningEvent.setLetterSoundLetters(new ArrayList<>());
+                    letterSoundLearningEvent.setLetterSoundSounds(new ArrayList<>());
                 }
 
                 Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
@@ -205,6 +208,9 @@ public class CsvAnalyticsExtractionHelper {
                     String[] letterSoundSoundsAsArray = letterSoundSoundsAsString.substring(1, letterSoundSoundsAsString.length() - 1).split(", ");
                     List<String> letterSoundSounds = Arrays.asList(letterSoundSoundsAsArray);
                     letterSoundAssessmentEvent.setLetterSoundSounds(letterSoundSounds);
+                } else {
+                    letterSoundAssessmentEvent.setLetterSoundLetters(new ArrayList<>());
+                    letterSoundAssessmentEvent.setLetterSoundSounds(new ArrayList<>());
                 }
 
                 Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));

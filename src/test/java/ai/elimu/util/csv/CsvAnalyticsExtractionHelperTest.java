@@ -90,6 +90,8 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals("ai.elimu.herufi", letterSoundLearningEvent.getPackageName());
         assertNull(letterSoundLearningEvent.getResearchExperiment());
         assertNull(letterSoundLearningEvent.getExperimentGroup());
+        assertEquals(Arrays.asList(), letterSoundLearningEvent.getLetterSoundLetters());
+        assertEquals(Arrays.asList(), letterSoundLearningEvent.getLetterSoundSounds());
         assertEquals(1, letterSoundLearningEvent.getLetterSoundId());
     }
 
