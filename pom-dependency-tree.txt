@@ -1,4 +1,4 @@
-ai.elimu:webapp:war:2.6.110-SNAPSHOT
+ai.elimu:webapp:war:2.6.111-SNAPSHOT
 +- ai.elimu:model:jar:model-2.0.118:compile
 |  \- com.google.code.gson:gson:jar:2.13.1:compile
 |     \- com.google.errorprone:error_prone_annotations:jar:2.38.0:compile
@@ -97,8 +97,8 @@ ai.elimu:webapp:war:2.6.110-SNAPSHOT
 |  +- jakarta.inject:jakarta.inject-api:jar:2.0.0:runtime
 |  \- org.antlr:antlr4-runtime:jar:4.10.1:runtime
 +- org.hibernate.orm:hibernate-ant:jar:6.1.7.Final:compile
-+- org.hibernate.validator:hibernate-validator:jar:7.0.0.Final:compile
-|  \- jakarta.validation:jakarta.validation-api:jar:3.0.0:compile
++- org.hibernate.validator:hibernate-validator:jar:8.0.0.Final:compile
+|  \- jakarta.validation:jakarta.validation-api:jar:3.0.2:compile
 +- jakarta.persistence:jakarta.persistence-api:jar:3.0.0:compile
 +- org.hsqldb:hsqldb:jar:2.7.4:compile
 +- org.mariadb.jdbc:mariadb-java-client:jar:2.7.12:compile
