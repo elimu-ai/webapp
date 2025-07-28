@@ -1,6 +1,10 @@
 package ai.elimu.entity.analytics;
 
+import java.util.List;
+
 import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.converters.StringListConverter;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
@@ -16,13 +20,15 @@ public class LetterSoundAssessmentEvent extends AssessmentEvent {
      * The sequence of letters. E.g. <code>"sh"</code>.
      */
     @NotNull
-    private String letterSoundLetters;
+    @Convert(converter = StringListConverter.class)
+    private List<String> letterSoundLetters;
 
     /**
      * The sequence of sounds (IPA values). E.g. <code>"ʃ"</code>.
      */
     @NotNull
-    private String letterSoundSounds;
+    @Convert(converter = StringListConverter.class)
+    private List<String> letterSoundSounds;
 
     /**
      * This field might not be included, e.g. if the assessment task was done in a 

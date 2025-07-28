@@ -97,11 +97,21 @@ public class CsvAnalyticsExtractionHelper {
                     }
                 }
 
-                String letterSoundLetters = csvRecord.get("letter_sound_letters");
-                letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundLetters);
+                if (versionCode >= 4001000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/4.1.0
 
-                String letterSoundSounds = csvRecord.get("letter_sound_sounds");
-                letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundSounds);
+                    // Convert letters from String to String list. E.g. "[ห, ล]" --> ["ห", "ล"]
+                    String letterSoundLettersAsString = csvRecord.get("letter_sound_letters");
+                    String[] letterSoundLettersAsArray = letterSoundLettersAsString.substring(1, letterSoundLettersAsString.length() - 1).split(", ");
+                    List<String> letterSoundLetters = Arrays.asList(letterSoundLettersAsArray);
+                    letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundLetters);
+
+                    // Convert sounds from String to String list. E.g. "[a, w]" --> ["a", "w"]
+                    String letterSoundSoundsAsString = csvRecord.get("letter_sound_sounds");
+                    String[] letterSoundSoundsAsArray = letterSoundSoundsAsString.substring(1, letterSoundSoundsAsString.length() - 1).split(", ");
+                    List<String> letterSoundSounds = Arrays.asList(letterSoundSoundsAsArray);
+                    letterSoundAssessmentEvent.setLetterSoundSounds(letterSoundSounds);
+                }
 
                 Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
                 letterSoundAssessmentEvent.setLetterSoundId(letterSoundId);
@@ -181,9 +191,21 @@ public class CsvAnalyticsExtractionHelper {
                     }
                 }
 
-                // TODO: letter_sound_letters
+                if (versionCode >= 4001000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/4.1.0
 
-                // TODO: letter_sound_sounds
+                    // Convert letters from String to String list. E.g. "[ห, ล]" --> ["ห", "ล"]
+                    String letterSoundLettersAsString = csvRecord.get("letter_sound_letters");
+                    String[] letterSoundLettersAsArray = letterSoundLettersAsString.substring(1, letterSoundLettersAsString.length() - 1).split(", ");
+                    List<String> letterSoundLetters = Arrays.asList(letterSoundLettersAsArray);
+                    letterSoundLearningEvent.setLetterSoundLetters(letterSoundLetters);
+
+                    // Convert sounds from String to String list. E.g. "[a, w]" --> ["a", "w"]
+                    String letterSoundSoundsAsString = csvRecord.get("letter_sound_sounds");
+                    String[] letterSoundSoundsAsArray = letterSoundSoundsAsString.substring(1, letterSoundSoundsAsString.length() - 1).split(", ");
+                    List<String> letterSoundSounds = Arrays.asList(letterSoundSoundsAsArray);
+                    letterSoundLearningEvent.setLetterSoundSounds(letterSoundSounds);
+                }
 
                 Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
                 letterSoundLearningEvent.setLetterSoundId(letterSoundId);
