@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/rest/v2/content/videos", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/content/videos", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 @Slf4j
 public class VideosRestController {
