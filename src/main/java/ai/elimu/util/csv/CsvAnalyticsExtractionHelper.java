@@ -544,8 +544,13 @@ public class CsvAnalyticsExtractionHelper {
                 Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
                 numberAssessmentEvent.setNumberValue(numberValue);
 
-                // String numberSymbol = csvRecord.get("number_symbol");
-                // numberAssessmentEvent.setNumberSymbol(numberSymbol);
+                if (versionCode >= 4001005) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/4.1.5
+                    if (StringUtils.isNotBlank(csvRecord.get("number_symbol"))) {
+                        String numberSymbol = csvRecord.get("number_symbol");
+                        numberAssessmentEvent.setNumberSymbol(numberSymbol);
+                    }
+                }
 
                 if (StringUtils.isNotBlank(csvRecord.get("number_id"))) {
                     Long numberId = Long.valueOf(csvRecord.get("number_id"));
