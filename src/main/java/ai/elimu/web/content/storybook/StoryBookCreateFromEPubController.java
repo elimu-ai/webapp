@@ -385,6 +385,9 @@ public class StoryBookCreateFromEPubController {
                   || originalTextLowerCase.contains("มูลนิธิเอเชีย") // StoryBookProvider#LETS_READ_ASIA
                   || originalTextLowerCase.contains("มูลนิธิ เอเชีย") // StoryBookProvider#LETS_READ_ASIA
                   || originalTextLowerCase.contains("এশিয়া ফাউন্ডেশনের") // StoryBookProvider#LETS_READ_ASIA
+                  || originalTextLowerCase.contains("translated by") // StoryBookProvider#LETS_READ_ASIA
+                  || originalTextLowerCase.contains("แปลโดย") // StoryBookProvider#LETS_READ_ASIA
+                  || originalTextLowerCase.contains("แปล โดย") // StoryBookProvider#LETS_READ_ASIA
           ) {
             isMetadata = true;
             break;
