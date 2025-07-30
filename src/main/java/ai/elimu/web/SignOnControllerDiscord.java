@@ -144,7 +144,6 @@ public class SignOnControllerDiscord {
       log.info("existingContributor: " + existingContributor);
       if (existingContributor == null) {
         // Store new Contributor in database
-        contributor.setRegistrationTime(Calendar.getInstance());
         contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
         if (contributor.getEmail() == null) {
           // Ask the Contributor to add their e-mail manually

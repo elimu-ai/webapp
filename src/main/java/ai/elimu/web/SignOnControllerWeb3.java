@@ -93,7 +93,6 @@ public class SignOnControllerWeb3 {
     if (existingContributor == null) {
       // Store new Contributor in database
       contributor.setEmail(address + "@ethmail.cc");
-      contributor.setRegistrationTime(Calendar.getInstance());
       contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
       contributorDao.create(contributor);
       log.debug("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
