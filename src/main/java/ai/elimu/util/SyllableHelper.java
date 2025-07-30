@@ -25,7 +25,7 @@ public class SyllableHelper {
         
         if (language == Language.ENG) {
             String hyphenatedWord = getHyphenatedWord(word.getText());
-            log.info("hyphenatedWord: " + hyphenatedWord);
+            log.debug("hyphenatedWord: " + hyphenatedWord);
             String[] syllableArray = hyphenatedWord.split("­");
             for (String syllable : syllableArray) {
                 syllables.add(syllable.toLowerCase());

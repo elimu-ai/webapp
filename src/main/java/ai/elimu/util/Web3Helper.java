@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Web3Helper {
     
     public static boolean isSignatureValid(final String address, final String signature, final String message) {
-        log.info("isSignatureValid");
+        log.debug("isSignatureValid");
         
         boolean match = false;
         
@@ -50,7 +50,7 @@ public class Web3Helper {
 
             if (publicKey != null) {
                 String recoveredAddress = "0x" + Keys.getAddress(publicKey);
-                log.info("recoveredAddress: " + recoveredAddress);
+                log.debug("recoveredAddress: " + recoveredAddress);
                 if (recoveredAddress.equalsIgnoreCase(address)) {
                     match = true;
                     break;

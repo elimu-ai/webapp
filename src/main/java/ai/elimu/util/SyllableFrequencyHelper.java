@@ -17,16 +17,16 @@ public class SyllableFrequencyHelper {
         Map<String, Integer> syllableFrequencyMap = new HashMap<>();
         
         for (String paragraph : paragraphs) {
-            log.info("paragraph: " + paragraph);
+            log.debug("paragraph: " + paragraph);
             List<String> words = WordExtractionHelper.getWords(paragraph, language);
             for (String wordInParagraph : words) {
-                log.info("wordInParagraph: " + wordInParagraph);
+                log.debug("wordInParagraph: " + wordInParagraph);
                 Word word = new Word();
                 word.setText(wordInParagraph);
                 List<String> syllables = SyllableHelper.getSyllables(word, language);
-                log.info("syllables.size(): " + syllables.size());
+                log.debug("syllables.size(): " + syllables.size());
                 for (String syllable : syllables) {
-                    log.info("syllable: " + syllable);
+                    log.debug("syllable: " + syllable);
                     syllableFrequencyMap.put(syllable, syllableFrequencyMap.getOrDefault(syllable, 0) + 1);
                 }
             }

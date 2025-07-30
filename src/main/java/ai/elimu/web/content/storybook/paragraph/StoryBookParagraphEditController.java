@@ -46,7 +46,7 @@ public class StoryBookParagraphEditController {
     log.info("handleRequest");
 
     StoryBookParagraph storyBookParagraph = storyBookParagraphDao.read(id);
-    log.info("storyBookParagraph: " + storyBookParagraph);
+    log.debug("storyBookParagraph: " + storyBookParagraph);
     model.addAttribute("storyBookParagraph", storyBookParagraph);
 
     return "content/storybook/paragraph/edit";
