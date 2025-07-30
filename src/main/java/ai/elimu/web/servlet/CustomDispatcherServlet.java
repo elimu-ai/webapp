@@ -45,7 +45,6 @@ import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
-import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
 import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 import ai.elimu.model.v2.enums.content.ImageFormat;
@@ -420,7 +419,6 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                         wordLearningEvent.setWordText(wordSAAM.getText());
                         wordLearningEvent.setWordId(wordSAAM.getId());
                     }
-                    wordLearningEvent.setLearningEventType(LearningEventType.WORD_PRESSED);
                     wordLearningEventDao.create(wordLearningEvent);
                 }
 
@@ -467,7 +465,6 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                         storyBookLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                         storyBookLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     }
-                    storyBookLearningEvent.setLearningEventType(LearningEventType.STORYBOOK_OPENED);
                     JSONObject additionalData = new JSONObject();
                     if (storyBookLearningEvent.getExperimentGroup() == ExperimentGroup.CONTROL) {
                         additionalData.put("seconds_spent_per_chapter", "[" + (int) (Math.pow(0.98, weekCount) * Math.random() * 30) + ", " + (int) (Math.pow(0.98, weekCount) * Math.random() * 60) + "]");
@@ -493,7 +490,6 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     }
                     videoLearningEvent.setVideoTitle(video.getTitle());
                     videoLearningEvent.setVideoId(video.getId());
-                    videoLearningEvent.setLearningEventType(LearningEventType.VIDEO_OPENED);
                     videoLearningEventDao.create(videoLearningEvent);
                 }
             }

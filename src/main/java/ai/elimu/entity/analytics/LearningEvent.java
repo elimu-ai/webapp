@@ -2,12 +2,9 @@ package ai.elimu.entity.analytics;
 
 import ai.elimu.entity.BaseEntity;
 import ai.elimu.entity.application.Application;
-import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
 import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Temporal;
@@ -46,10 +43,6 @@ public abstract class LearningEvent extends BaseEntity {
    */
   @ManyToOne
   private Application application;
-
-  @Deprecated
-  @Enumerated(EnumType.STRING)
-  private LearningEventType learningEventType;
 
   /**
    * Any additional data should be stored in the format of a JSON object.
