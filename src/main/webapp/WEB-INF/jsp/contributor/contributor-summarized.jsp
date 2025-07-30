@@ -26,7 +26,6 @@
             </div>
             <div class="card-content">                 
                 <blockquote><c:out value="${contributor2.motivation}" /></blockquote>
-                <p class="grey-text">Joined: <fmt:formatDate value="${contributor2.registrationTime.time}" pattern="yyyy-MM-dd" /></p>
                 <p>Roles: ${contributor2.roles}</p>
                 <c:if test="${not empty contributor2.providerIdWeb3}">
                     <p style="margin-top: 1em;">

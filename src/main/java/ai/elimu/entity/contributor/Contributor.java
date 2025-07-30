@@ -6,11 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import java.util.Calendar;
 import java.util.Set;
 
 import ai.elimu.entity.BaseEntity;
@@ -31,14 +28,6 @@ public class Contributor extends BaseEntity {
   @ElementCollection(fetch = FetchType.EAGER)
   @Enumerated(EnumType.STRING)
   private Set<Role> roles;
-
-  @NotNull
-  @Temporal(TemporalType.TIMESTAMP)
-  private Calendar registrationTime;
-
-  // TODO: add registrationPlatform
-
-  // TODO: add registrationProvider
 
   /**
    * An Ethereum address. Expected format: "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B"

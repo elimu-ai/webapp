@@ -71,20 +71,7 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
         return em.createQuery(
             "SELECT c " +
             "FROM Contributor c " +
-            "ORDER BY c.registrationTime DESC")
-            .getResultList();
-    }
-
-    @Override
-    public List<Contributor> readAll(Calendar calendarFrom, Calendar calendarTo) throws DataAccessException {
-        return em.createQuery(
-            "SELECT c " +
-            "FROM Contributor c " +
-            "WHERE c.registrationTime >= :calendarFrom " +
-            "AND c.registrationTime < :calendarTo " +
-            "ORDER BY c.registrationTime DESC")
-            .setParameter("calendarFrom", calendarFrom)
-            .setParameter("calendarTo", calendarTo)
+            "ORDER BY c.id DESC")
             .getResultList();
     }
 

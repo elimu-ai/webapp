@@ -485,7 +485,6 @@
         providerIdDiscord varchar(255),
         providerIdGitHub varchar(255),
         providerIdWeb3 varchar(42),
-        registrationTime datetime,
         usernameDiscord varchar(255),
         usernameGitHub varchar(255),
         primary key (id)

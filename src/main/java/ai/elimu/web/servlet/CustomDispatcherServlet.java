@@ -167,7 +167,6 @@ public class CustomDispatcherServlet extends DispatcherServlet {
 
         Contributor contributor = new Contributor();
         contributor.setEmail("dev@elimu.ai");
-        contributor.setRegistrationTime(Calendar.getInstance());
         contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
         contributorDao.create(contributor);
 
