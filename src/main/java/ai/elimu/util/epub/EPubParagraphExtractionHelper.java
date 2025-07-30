@@ -235,7 +235,7 @@ public class EPubParagraphExtractionHelper {
     }
     
     private static void processParagraphNode(StoryBookProvider storyBookProvider, Node paragraphNode, List<String> paragraphs, Language language) {
-        log.info("processParagraphNode");
+        log.debug("processParagraphNode");
         
         log.debug("storyBookProvider: " + storyBookProvider);
         if ((storyBookProvider == StoryBookProvider.GLOBAL_DIGITAL_LIBRARY) || (storyBookProvider == StoryBookProvider.LETS_READ_ASIA)) {
@@ -302,7 +302,7 @@ public class EPubParagraphExtractionHelper {
      * E.g. "लेना ।" --> "लेना।"
      */
     private static String getCleanedUpParagraph(String paragraph, Language language) {
-        log.info("getCleanedUpParagraph, paragraph: \"" + paragraph + "\"");
+        log.debug("getCleanedUpParagraph, paragraph: \"" + paragraph + "\"");
 
         if (language == Language.THA) {
             // Add whitespaces between Thai words
