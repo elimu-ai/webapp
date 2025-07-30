@@ -51,13 +51,13 @@ public class SignOnControllerWeb3 {
       @RequestParam String signature
   ) throws IOException {
     log.info("handleAuthorization");
-    log.info("address: " + address);
+    log.debug("address: " + address);
     if (StringUtils.isBlank(address)) {
       return "redirect:/sign-on/web3?error=Missing address";
     }
     address = address.toLowerCase();
 
-    log.info("signature: " + signature);
+    log.debug("signature: " + signature);
     if (StringUtils.isBlank(signature)) {
       return "redirect:/sign-on/web3?error=Missing signature";
     }
@@ -67,11 +67,11 @@ public class SignOnControllerWeb3 {
       log.warn("Invalid signature");
       return "redirect:/sign-on/web3?error=Invalid signature";
     }
-    log.info("Valid signature ✍️");
+    log.debug("Valid signature ✍️");
 
     // Check if the Contributor is currently signed on (via Google/GitHub)
     Contributor authenticatedContributor = (Contributor) session.getAttribute("contributor");
-    log.info("authenticatedContributor: " + authenticatedContributor);
+    log.debug("authenticatedContributor: " + authenticatedContributor);
     if ((authenticatedContributor != null) && (authenticatedContributor.getId() != null)) {
       // Check if a Contributor with this ETH address already exists in the database.
       // If so, merge the two Contributors into one.
@@ -89,14 +89,14 @@ public class SignOnControllerWeb3 {
 
     // Check if a Contributor with this ETH address already exists in the database
     Contributor existingContributor = contributorDao.readByProviderIdWeb3(address);
-    log.info("existingContributor: " + existingContributor);
+    log.debug("existingContributor: " + existingContributor);
     if (existingContributor == null) {
       // Store new Contributor in database
       contributor.setEmail(address + "@ethmail.cc");
       contributor.setRegistrationTime(Calendar.getInstance());
       contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
       contributorDao.create(contributor);
-      log.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
+      log.debug("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
     } else {
       contributor = existingContributor;
     }
