@@ -50,7 +50,7 @@ public class SignOnControllerWeb3 {
       @RequestParam String address,
       @RequestParam String signature
   ) throws IOException {
-    log.info("handleAuthorization");
+    log.debug("handleAuthorization");
     log.debug("address: " + address);
     if (StringUtils.isBlank(address)) {
       return "redirect:/sign-on/web3?error=Missing address";

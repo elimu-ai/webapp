@@ -32,7 +32,7 @@ public class EPubParagraphExtractionHelper {
      * @return A list of paragraphs.
      */
     public static List<String> extractParagraphsFromChapterFile(File xhtmlFile, Language language) {
-        log.info("extractParagraphsFromChapter");
+        log.debug("extractParagraphsFromChapter");
         
         List<String> paragraphs = new ArrayList<>();
 
@@ -348,7 +348,6 @@ public class EPubParagraphExtractionHelper {
             paragraph = paragraph.replace(" \"", "\"");
         }
         
-        System.out.println("paragraph: " + paragraph);
         return paragraph;
     }
 }
