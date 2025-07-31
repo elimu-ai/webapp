@@ -266,7 +266,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             image.setFileSize(bytes.length);
             image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
             int[] dominantColor = ImageColorHelper.getDominantColor(bytes);
-            image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            image.setDominantColor(dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2]);
         } catch (IOException e) {
             logger.error(null, e);
         }
