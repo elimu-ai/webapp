@@ -42,8 +42,11 @@ public class Image extends Multimedia {
   @Enumerated(EnumType.STRING)
   private ImageFormat imageFormat;
 
-  //    @NotNull
-  private String dominantColor; // Web color
+  /**
+   * The dominant color of the image, stored in RGB format. E.g. "135,134,115"
+   */
+  @NotNull
+  private String dominantColor;
 
   public String getUrl() {
     String filename = getChecksumMd5() + "." + getImageFormat().toString().toLowerCase();

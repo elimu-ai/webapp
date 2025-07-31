@@ -20,11 +20,13 @@
             <script>
                 $(function() {
                     console.debug("dominantColor: ${image.dominantColor}");
-                    <c:if test="${not empty image.dominantColor}">
-                        $('nav').removeClass("deep-purple");
-                        $('nav').css("background-color", "${image.dominantColor}");
-                        $('form img').css("box-shadow", "2px 2px ${image.dominantColor}");
-                    </c:if>
+                    $('nav').removeClass("deep-purple");
+                    $('nav').css("background-color", "rgb(${image.dominantColor})");
+                    $('form img').css("background-color", "rgba(${image.dominantColor}, 0.08)");
+                    $('form img').css("box-shadow", "4px 4px rgba(${image.dominantColor}, 0.16)");
+                    $('form img').css("border", "2px solid rgba(${image.dominantColor}, 0.64)");
+                    $('form img').css("border-right-width", "4px");
+                    $('form img').css("border-bottom-width", "4px");
                 });
             </script>
 

@@ -190,7 +190,7 @@ public class StoryBookCreateFromEPubController {
           }
           try {
             int[] dominantColor = ImageColorHelper.getDominantColor(coverImageBytes);
-            coverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            coverImage.setDominantColor(dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2]);
           } catch (NullPointerException ex) {
             // javax.imageio.IIOException: Unsupported Image Type
           }
@@ -293,7 +293,7 @@ public class StoryBookCreateFromEPubController {
               }
               try {
                 int[] dominantColor = ImageColorHelper.getDominantColor(chapterImageBytes);
-                chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+                chapterImage.setDominantColor(dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2]);
               } catch (NullPointerException ex) {
                 // javax.imageio.IIOException: Unsupported Image Type
               }

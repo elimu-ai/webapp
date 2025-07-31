@@ -125,7 +125,7 @@ public class ImageCreateController {
       image.setTitle(image.getTitle().toLowerCase());
       try {
         int[] dominantColor = ImageColorHelper.getDominantColor(bytes);
-        image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+        image.setDominantColor(dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2]);
       } catch (NullPointerException ex) {
         // javax.imageio.IIOException: Unsupported Image Type
       }
