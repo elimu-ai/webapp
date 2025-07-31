@@ -43,7 +43,8 @@ public class ImageCsvExportController {
             "checksum_md5",
             "checksum_github",
             "download_url",
-            "image_format"
+            "image_format",
+            "dominant_color"
         );
     StringWriter stringWriter = new StringWriter();
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
@@ -59,7 +60,8 @@ public class ImageCsvExportController {
           image.getChecksumMd5(),
           image.getChecksumGitHub(),
           image.getUrl(),
-          image.getImageFormat()
+          image.getImageFormat(),
+          image.getDominantColor()
       );
     }
     csvPrinter.flush();
