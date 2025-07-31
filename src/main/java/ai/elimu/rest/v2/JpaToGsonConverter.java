@@ -205,6 +205,7 @@ public class JpaToGsonConverter {
             // Image
             imageGson.setTitle(image.getTitle());
             imageGson.setImageFormat(image.getImageFormat());
+            imageGson.setDominantColor(image.getDominantColor());
             imageGson.setChecksumMd5(image.getChecksumMd5());
             imageGson.setFileUrl(image.getUrl());
             imageGson.setFileSize(image.getFileSize());
