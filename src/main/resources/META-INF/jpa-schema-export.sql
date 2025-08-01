@@ -31,6 +31,14 @@
        drop 
        foreign key FKlwplucw359d2d5i4yelfkwy6f;
 
+    alter table EmojiContributionEvent 
+       drop 
+       foreign key FKf2qm9v0kk0web84bj7ca6yjwj;
+
+    alter table EmojiContributionEvent 
+       drop 
+       foreign key FKa74hawryhu924hjr0apjir648;
+
     alter table Image_Letter 
        drop 
        foreign key FK9pi4lblfl1s807tlif82cm5mt;
@@ -343,6 +351,8 @@
 
     drop table if exists Emoji_Word;
 
+    drop table if exists EmojiContributionEvent;
+
     drop table if exists Image;
 
     drop table if exists Image_Letter;
@@ -531,6 +541,16 @@
        Emoji_id bigint not null,
         words_id bigint not null,
         primary key (Emoji_id, words_id)
+    ) engine=InnoDB;
+
+    create table EmojiContributionEvent (
+       id bigint not null auto_increment,
+        comment varchar(1000),
+        revisionNumber integer,
+        timestamp datetime,
+        contributor_id bigint,
+        emoji_id bigint,
+        primary key (id)
     ) engine=InnoDB;
 
     create table Image (
@@ -1083,6 +1103,16 @@
     alter table Emoji_Word 
        add constraint FKlwplucw359d2d5i4yelfkwy6f 
        foreign key (Emoji_id) 
+       references Emoji (id);
+
+    alter table EmojiContributionEvent 
+       add constraint FKf2qm9v0kk0web84bj7ca6yjwj 
+       foreign key (contributor_id) 
+       references Contributor (id);
+
+    alter table EmojiContributionEvent 
+       add constraint FKa74hawryhu924hjr0apjir648 
+       foreign key (emoji_id) 
        references Emoji (id);
 
     alter table Image_Letter 

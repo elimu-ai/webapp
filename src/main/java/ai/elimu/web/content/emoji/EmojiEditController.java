@@ -1,11 +1,19 @@
 package ai.elimu.web.content.emoji;
 
+import ai.elimu.dao.EmojiContributionEventDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.content.Emoji;
 import ai.elimu.entity.content.Word;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.EmojiContributionEvent;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
+import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,6 +40,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class EmojiEditController {
 
   private final EmojiDao emojiDao;
+  private final EmojiContributionEventDao emojiContributionEventDao;
 
   private final WordDao wordDao;
 
@@ -44,6 +53,8 @@ public class EmojiEditController {
     Emoji emoji = emojiDao.read(id);
     model.addAttribute("emoji", emoji);
 
+    model.addAttribute("emojiContributionEvents", emojiContributionEventDao.readAll(emoji));
+
     List<Word> words = wordDao.readAllOrdered();
     model.addAttribute("words", words);
     model.addAttribute("emojisByWordId", getEmojisByWordId());
@@ -53,6 +64,7 @@ public class EmojiEditController {
 
   @PostMapping
   public String handleSubmit(
+      HttpSession session,
       @Valid Emoji emoji,
       BindingResult result,
       Model model) {
@@ -70,6 +82,8 @@ public class EmojiEditController {
     if (result.hasErrors()) {
       model.addAttribute("emoji", emoji);
 
+      model.addAttribute("emojiContributionEvents", emojiContributionEventDao.readAll(emoji));
+
       List<Word> words = wordDao.readAllOrdered();
       model.addAttribute("words", words);
       model.addAttribute("emojisByWordId", getEmojisByWordId());
@@ -79,6 +93,15 @@ public class EmojiEditController {
       emoji.setRevisionNumber(emoji.getRevisionNumber() + 1);
       emojiDao.update(emoji);
 
+      EmojiContributionEvent emojiContributionEvent = new EmojiContributionEvent();
+      emojiContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      emojiContributionEvent.setTimestamp(Calendar.getInstance());
+      emojiContributionEvent.setEmoji(emoji);
+      emojiContributionEvent.setRevisionNumber(emoji.getRevisionNumber());
+      emojiContributionEventDao.create(emojiContributionEvent);
+
+      DiscordHelper.postToChannel(Channel.CONTENT, "Emoji " + emoji.getGlyph() + " updated: " + DomainHelper.getBaseUrl() + "/content/emoji/edit/" + emoji.getId());
+
       return "redirect:/content/emoji/list#" + emoji.getId();
     }
   }
@@ -87,6 +110,7 @@ public class EmojiEditController {
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
+      HttpSession session,
       @PathVariable Long id) {
     log.info("handleAddContentLabelRequest");
 
@@ -103,6 +127,14 @@ public class EmojiEditController {
         words.add(word);
         emoji.setRevisionNumber(emoji.getRevisionNumber() + 1);
         emojiDao.update(emoji);
+
+        EmojiContributionEvent emojiContributionEvent = new EmojiContributionEvent();
+        emojiContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        emojiContributionEvent.setTimestamp(Calendar.getInstance());
+        emojiContributionEvent.setEmoji(emoji);
+        emojiContributionEvent.setRevisionNumber(emoji.getRevisionNumber());
+        emojiContributionEvent.setComment("Add word label: \"" + word.getText() + "\" (🤖 auto-generated comment)");
+        emojiContributionEventDao.create(emojiContributionEvent);
       }
     }
 
@@ -113,6 +145,7 @@ public class EmojiEditController {
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
+      HttpSession session,
       @PathVariable Long id) {
     log.info("handleRemoveContentLabelRequest");
 
@@ -134,6 +167,14 @@ public class EmojiEditController {
       }
       emoji.setRevisionNumber(emoji.getRevisionNumber() + 1);
       emojiDao.update(emoji);
+
+      EmojiContributionEvent emojiContributionEvent = new EmojiContributionEvent();
+      emojiContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      emojiContributionEvent.setTimestamp(Calendar.getInstance());
+      emojiContributionEvent.setEmoji(emoji);
+      emojiContributionEvent.setRevisionNumber(emoji.getRevisionNumber());
+      emojiContributionEvent.setComment("Remove word label: \"" + word.getText() + "\" (🤖 auto-generated comment)");
+      emojiContributionEventDao.create(emojiContributionEvent);
     }
 
     return "success";

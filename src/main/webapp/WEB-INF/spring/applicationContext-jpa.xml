@@ -50,6 +50,7 @@
     <bean id="dbMigrationDao" class="ai.elimu.dao.jpa.DbMigrationDaoJpa" />
     <bean id="deviceDao" class="ai.elimu.dao.jpa.DeviceDaoJpa" />
     <bean id="emojiDao" class="ai.elimu.dao.jpa.EmojiDaoJpa" />
+    <bean id="emojiContributionEventDao" class="ai.elimu.dao.jpa.EmojiContributionEventDaoJpa" />
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
     <bean id="imageContributionEventDao" class="ai.elimu.dao.jpa.ImageContributionEventDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
