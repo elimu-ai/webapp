@@ -1,6 +1,7 @@
 package ai.elimu.web.contributor;
 
 import ai.elimu.dao.ContributorDao;
+import ai.elimu.dao.EmojiContributionEventDao;
 import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterSoundContributionEventDao;
@@ -52,10 +53,12 @@ public class ContributorCsvExportController {
   private final LetterSoundContributionEventDao letterSoundContributionEventDao;
   private final LetterSoundPeerReviewEventDao letterSoundPeerReviewEventDao;
 
-  private final NumberContributionEventDao numberContributionEventDao;
-
   private final WordContributionEventDao wordContributionEventDao;
   private final WordPeerReviewEventDao wordPeerReviewEventDao;
+
+  private final NumberContributionEventDao numberContributionEventDao;
+
+  private final EmojiContributionEventDao emojiContributionEventDao;
 
   private final ImageContributionEventDao imageContributionEventDao;
 
@@ -65,10 +68,7 @@ public class ContributorCsvExportController {
   private final VideoContributionEventDao videoContributionEventDao;
 
   @GetMapping
-  public void handleRequest(
-      HttpServletResponse response,
-      OutputStream outputStream
-  ) throws IOException {
+  public void handleRequest(HttpServletResponse response, OutputStream outputStream) throws IOException {
     log.info("handleRequest");
 
     List<Contributor> contributors = contributorDao.readAll();
@@ -94,13 +94,16 @@ public class ContributorCsvExportController {
     List<LetterSoundPeerReviewEvent> letterSoundPeerReviewEventsTotal = letterSoundPeerReviewEventDao.readAll();
     log.info("letterSoundPeerReviewEventsTotal.size(): " + letterSoundPeerReviewEventsTotal.size());
 
-    List<NumberContributionEvent> numberContributionEventsTotal = numberContributionEventDao.readAll();
-    log.info("numberContributionEventsTotal.size(): " + numberContributionEventsTotal.size());
-
     List<WordContributionEvent> wordContributionEventsTotal = wordContributionEventDao.readAll();
     log.info("wordContributionEventsTotal.size(): " + wordContributionEventsTotal.size());
     List<WordPeerReviewEvent> wordPeerReviewEventsTotal = wordPeerReviewEventDao.readAll();
     log.info("wordPeerReviewEventsTotal.size(): " + wordPeerReviewEventsTotal.size());
+
+    List<NumberContributionEvent> numberContributionEventsTotal = numberContributionEventDao.readAll();
+    log.info("numberContributionEventsTotal.size(): " + numberContributionEventsTotal.size());
+
+    Long emojiContributionEventCountTotal = emojiContributionEventDao.readCount();
+    log.info("emojiContributionEventCountTotal: " + emojiContributionEventCountTotal);
 
     List<ImageContributionEvent> imageContributionEventsTotal = imageContributionEventDao.readAll();
     log.info("imageContributionEventsTotal.size(): " + imageContributionEventsTotal.size());
@@ -136,16 +139,20 @@ public class ContributorCsvExportController {
       Double impactPercentageLetterSoundPeerReviews = letterSoundPeerReviewEvents.size() * 100D / letterSoundPeerReviewEventsTotal.size();
       log.debug("impactPercentageLetterSoundPeerReviews: " + impactPercentageLetterSoundPeerReviews);
 
-      List<NumberContributionEvent> numberContributionEvents = numberContributionEventDao.readAll(contributor);
-      Double impactPercentageNumbers = numberContributionEvents.size() * 100D / numberContributionEventsTotal.size();
-      log.debug("impactPercentageNumbers: " + impactPercentageNumbers);
-
       List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll(contributor);
       Double impactPercentageWords = wordContributionEvents.size() * 100D / wordContributionEventsTotal.size();
       log.debug("impactPercentageWords: " + impactPercentageWords);
       List<WordPeerReviewEvent> wordPeerReviewEvents = wordPeerReviewEventDao.readAll(contributor);
       Double impactPercentageWordPeerReviews = wordPeerReviewEvents.size() * 100D / wordPeerReviewEventsTotal.size();
       log.debug("impactPercentageWordPeerReviews: " + impactPercentageWordPeerReviews);
+
+      List<NumberContributionEvent> numberContributionEvents = numberContributionEventDao.readAll(contributor);
+      Double impactPercentageNumbers = numberContributionEvents.size() * 100D / numberContributionEventsTotal.size();
+      log.debug("impactPercentageNumbers: " + impactPercentageNumbers);
+
+      Long emojiContributionEventCount = emojiContributionEventDao.readCount(contributor);
+      Double impactPercentageEmojis = emojiContributionEventCount * 100D / emojiContributionEventCountTotal;
+      log.debug("impactPercentageEmojis: " + impactPercentageEmojis);
 
       List<ImageContributionEvent> imageContributionEvents = imageContributionEventDao.readAll(contributor);
       Double impactPercentageImages = imageContributionEvents.size() * 100D / imageContributionEventsTotal.size();
@@ -167,9 +174,10 @@ public class ContributorCsvExportController {
             + soundContributionEvents.size()
             + letterSoundContributionEvents.size()
             + letterSoundPeerReviewEvents.size()
-            + numberContributionEvents.size()
             + wordContributionEvents.size()
             + wordPeerReviewEvents.size()
+            + numberContributionEvents.size()
+            + emojiContributionEventCount
             + imageContributionEvents.size()
             + storyBookContributionEvents.size()
             + storyBookPeerReviewEvents.size()
@@ -179,9 +187,10 @@ public class ContributorCsvExportController {
             + soundContributionEventsTotal.size()
             + letterSoundContributionEventsTotal.size()
             + letterSoundPeerReviewEventsTotal.size()
-            + numberContributionEventsTotal.size()
             + wordContributionEventsTotal.size()
             + wordPeerReviewEventsTotal.size()
+            + numberContributionEventsTotal.size()
+            + emojiContributionEventCountTotal
             + imageContributionEventsTotal.size()
             + storyBookContributionEventsTotal.size()
             + storyBookPeerReviewEventsTotal.size()

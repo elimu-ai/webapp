@@ -33,6 +33,27 @@
             <a href="<spring:url value='/content/emoji/delete/${emoji.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
         </form:form>
     </div>
+
+    <div class="divider" style="margin: 2em 0;"></div>
+
+    <a name="contribution-events"></a>
+    <h5>Contributions 👩🏽‍💻</h5>
+    <div id="contributionEvents" class="collection">
+        <c:forEach var="emojiContributionEvent" items="${emojiContributionEvents}">
+            <a name="contribution-event_${emojiContributionEvent.id}"></a>
+            <div class="collection-item">
+                <span class="badge">
+                    Revision #${emojiContributionEvent.revisionNumber} 
+                    (<fmt:formatDate value="${emojiContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
+                </span>
+                <c:set var="chipContributor" value="${emojiContributionEvent.contributor}" />
+                <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
+                <c:if test="${not empty emojiContributionEvent.comment}">
+                    <blockquote><c:out value="${emojiContributionEvent.comment}" /></blockquote>
+                </c:if>
+            </div>
+        </c:forEach>
+    </div>
 </content:section>
 
 <content:aside>
