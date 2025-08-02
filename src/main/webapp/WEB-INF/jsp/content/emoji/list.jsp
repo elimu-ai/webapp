@@ -57,7 +57,7 @@
                                     #${emoji.revisionNumber}
                                 </p>
                                 <p>
-                                    <a href="<spring:url value='/content/storybook/edit/${emoji.id}#contribution-events' />" style="display: flex;">
+                                    <a href="<spring:url value='/content/emoji/edit/${emoji.id}#contribution-events' />" style="display: flex;">
                                         <span class="peerReviewStatusContainer" data-status="${emoji.peerReviewStatus}">
                                             Peer-review: <code>${emoji.peerReviewStatus}</code>
                                         </span>
