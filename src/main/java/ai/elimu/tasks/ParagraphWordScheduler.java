@@ -7,6 +7,8 @@ import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.WordExtractionHelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,35 +35,40 @@ public class ParagraphWordScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+    try {
+      Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
 
-    List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll();
-    log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
-    for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-      log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
+      List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll();
+      log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+      for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+        log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
 
-      List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-      log.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+        List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
+        log.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
 
-      // Look for matches of existing Words in the paragraph's original text
-      List<Word> words = new ArrayList<>();
-      for (String wordInOriginalText : wordsInOriginalText) {
-        log.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
-        wordInOriginalText = wordInOriginalText.toLowerCase();
-        log.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
-        Word word = wordDao.readByText(wordInOriginalText);
-        log.debug("word: " + word);
-        words.add(word);
+        // Look for matches of existing Words in the paragraph's original text
+        List<Word> words = new ArrayList<>();
+        for (String wordInOriginalText : wordsInOriginalText) {
+          log.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
+          wordInOriginalText = wordInOriginalText.toLowerCase();
+          log.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+          Word word = wordDao.readByText(wordInOriginalText);
+          log.debug("word: " + word);
+          words.add(word);
+        }
+        log.info("words.size(): " + words.size());
+        storyBookParagraph.setWords(words);
+
+        // Update the paragraph's list of Words in the database
+        storyBookParagraphDao.update(storyBookParagraph);
       }
-      log.info("words.size(): " + words.size());
-      storyBookParagraph.setWords(words);
 
-      // Update the paragraph's list of Words in the database
-      storyBookParagraphDao.update(storyBookParagraph);
+      // Refresh REST API cache
+      storyBooksJsonService.refreshStoryBooksJSONArray();
+    } catch (Exception e) {
+      log.error("Error in scheduled task:", e);
+      DiscordHelper.postToChannel(Channel.CONTENT, "Error in `" + e.getClass() + ": " + e.getMessage() + "`");
     }
-
-    // Refresh REST API cache
-    storyBooksJsonService.refreshStoryBooksJSONArray();
 
     log.info("execute complete");
   }

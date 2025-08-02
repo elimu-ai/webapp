@@ -4,6 +4,8 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.content.LetterSound;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,20 +30,25 @@ public class LetterUsageCountScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    // <ID, frequency>
-    Map<Long, Integer> frequencyMap = new HashMap<>();
-    
-    // Calculate the frequency of each letter
-    for (LetterSound letterSound : letterSoundDao.readAll()) {
-      for (Letter letter : letterSound.getLetters()) {
-        frequencyMap.put(letter.getId(), frequencyMap.getOrDefault(letter.getId(), 0) + letterSound.getUsageCount());
+    try {
+      // <ID, frequency>
+      Map<Long, Integer> frequencyMap = new HashMap<>();
+      
+      // Calculate the frequency of each letter
+      for (LetterSound letterSound : letterSoundDao.readAll()) {
+        for (Letter letter : letterSound.getLetters()) {
+          frequencyMap.put(letter.getId(), frequencyMap.getOrDefault(letter.getId(), 0) + letterSound.getUsageCount());
+        }
       }
-    }
 
-    // Update the values previously stored in the database
-    for (Letter letter : letterDao.readAll()) {
-      letter.setUsageCount(frequencyMap.getOrDefault(letter.getId(), 0));
-      letterDao.update(letter);
+      // Update the values previously stored in the database
+      for (Letter letter : letterDao.readAll()) {
+        letter.setUsageCount(frequencyMap.getOrDefault(letter.getId(), 0));
+        letterDao.update(letter);
+      }
+    } catch (Exception e) {
+      log.error("Error in scheduled task:", e);
+      DiscordHelper.postToChannel(Channel.CONTENT, "Error in `" + e.getClass() + ": " + e.getMessage() + "`");
     }
 
     log.info("execute complete");

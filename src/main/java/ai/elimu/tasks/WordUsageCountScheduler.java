@@ -4,6 +4,8 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.content.StoryBookParagraph;
 import ai.elimu.entity.content.Word;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,20 +31,25 @@ public class WordUsageCountScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    // <ID, frequency>
-    Map<Long, Integer> frequencyMap = new HashMap<>();
+    try {
+      // <ID, frequency>
+      Map<Long, Integer> frequencyMap = new HashMap<>();
 
-    // Calculate the frequency of each word
-    for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll()) {
-      for (Word word : storyBookParagraph.getWords()) {
-        frequencyMap.put(word.getId(), frequencyMap.getOrDefault(word.getId(), 0) + 1);
+      // Calculate the frequency of each word
+      for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll()) {
+        for (Word word : storyBookParagraph.getWords()) {
+          frequencyMap.put(word.getId(), frequencyMap.getOrDefault(word.getId(), 0) + 1);
+        }
       }
-    }
 
-    // Update the values previously stored in the database
-    for (Word word : wordDao.readAll()) {
-      word.setUsageCount(frequencyMap.getOrDefault(word.getId(), 0));
-      wordDao.update(word);
+      // Update the values previously stored in the database
+      for (Word word : wordDao.readAll()) {
+        word.setUsageCount(frequencyMap.getOrDefault(word.getId(), 0));
+        wordDao.update(word);
+      }
+    } catch (Exception e) {
+      log.error("Error in scheduled task:", e);
+      DiscordHelper.postToChannel(Channel.CONTENT, "Error in `" + e.getClass() + ": " + e.getMessage() + "`");
     }
 
     log.info("execute complete");
