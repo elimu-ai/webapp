@@ -51,22 +51,11 @@
                             <td>
                                 <p>#${letterSound.revisionNumber}</p>
                                 <p>
-                                    <c:choose>
-                                        <c:when test="${letterSound.peerReviewStatus == 'APPROVED'}">
-                                            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
-                                        </c:when>
-                                        <c:when test="${letterSound.peerReviewStatus == 'NOT_APPROVED'}">
-                                            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:set var="peerReviewStatusColor" value="" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <span class="chip ${peerReviewStatusColor}">
-                                        <a href="<spring:url value='/content/letter-sound/edit/${letterSound.id}#contribution-events' />">
-                                            ${letterSound.peerReviewStatus}
-                                        </a>
-                                    </span>
+                                    <a href="<spring:url value='/content/letter-sound/edit/${letterSound.id}#contribution-events' />" style="display: flex;">
+                                        <span class="peerReviewStatusContainer" data-status="${letterSound.peerReviewStatus}">
+                                            Peer-review: <code>${letterSound.peerReviewStatus}</code>
+                                        </span>
+                                    </a>
                                 </p>
                             </td>
                             <td>

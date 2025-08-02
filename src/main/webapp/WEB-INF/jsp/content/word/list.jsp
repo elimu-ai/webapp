@@ -113,22 +113,11 @@
                             <td>
                                 <p>#${word.revisionNumber}</p>
                                 <p>
-                                    <c:choose>
-                                        <c:when test="${word.peerReviewStatus == 'APPROVED'}">
-                                            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
-                                        </c:when>
-                                        <c:when test="${word.peerReviewStatus == 'NOT_APPROVED'}">
-                                            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:set var="peerReviewStatusColor" value="" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <span class="chip ${peerReviewStatusColor}">
-                                        <a href="<spring:url value='/content/word/edit/${word.id}#contribution-events' />">
-                                            ${word.peerReviewStatus}
-                                        </a>
-                                    </span>
+                                    <a href="<spring:url value='/content/word/edit/${word.id}#contribution-events' />" style="display: flex;">
+                                        <span class="peerReviewStatusContainer" data-status="${word.peerReviewStatus}">
+                                            Peer-review: <code>${word.peerReviewStatus}</code>
+                                        </span>
+                                    </a>
                                 </p>
                             </td>
                         </tr>

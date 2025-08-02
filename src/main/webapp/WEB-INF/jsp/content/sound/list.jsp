@@ -90,22 +90,11 @@
                             <td>
                                 <p>#${sound.revisionNumber}</p>
                                 <p>
-                                    <c:choose>
-                                        <c:when test="${sound.peerReviewStatus == 'APPROVED'}">
-                                            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
-                                        </c:when>
-                                        <c:when test="${sound.peerReviewStatus == 'NOT_APPROVED'}">
-                                            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:set var="peerReviewStatusColor" value="" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <span class="chip ${peerReviewStatusColor}">
-                                        <a href="<spring:url value='/content/sound/edit/${sound.id}#contribution-events' />">
-                                            ${sound.peerReviewStatus}
-                                        </a>
-                                    </span>
+                                    <a href="<spring:url value='/content/sound/edit/${sound.id}#contribution-events' />" style="display: flex;">
+                                        <span class="peerReviewStatusContainer" data-status="${sound.peerReviewStatus}">
+                                            Peer-review: <code>${sound.peerReviewStatus}</code>
+                                        </span>
+                                    </a>
                                 </p>
                             </td>
                         </tr>

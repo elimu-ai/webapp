@@ -53,22 +53,11 @@
                         <td>
                             <p>#${number.revisionNumber}</p>
                             <p>
-                                <c:choose>
-                                    <c:when test="${number.peerReviewStatus == 'APPROVED'}">
-                                        <c:set var="peerReviewStatusColor" value="teal lighten-5" />
-                                    </c:when>
-                                    <c:when test="${number.peerReviewStatus == 'NOT_APPROVED'}">
-                                        <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="peerReviewStatusColor" value="" />
-                                    </c:otherwise>
-                                </c:choose>
-                                <span class="chip ${peerReviewStatusColor}">
-                                    <a href="<spring:url value='/content/number/edit/${number.id}#contribution-events' />">
-                                        ${number.peerReviewStatus}
-                                    </a>
-                                </span>
+                                <a href="<spring:url value='/content/number/edit/${number.id}#contribution-events' />" style="display: flex;">
+                                    <span class="peerReviewStatusContainer" data-status="${number.peerReviewStatus}">
+                                        Peer-review: <code>${number.peerReviewStatus}</code>
+                                    </span>
+                                </a>
                             </p>
                         </td>
                     </tr>

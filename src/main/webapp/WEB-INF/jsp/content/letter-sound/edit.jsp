@@ -3,6 +3,12 @@
 </content:title>
 
 <content:section cssId="letterSoundEditPage">
+    <a href="#contribution-events" class="right" style="margin-top: 1.75rem;">
+        <span class="peerReviewStatusContainer" data-status="${letterSound.peerReviewStatus}">
+            Peer-review: <code>${letterSound.peerReviewStatus}</code>
+        </span>
+    </a>
+
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="letterSound">

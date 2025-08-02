@@ -3,6 +3,12 @@
 </content:title>
 
 <content:section cssId="videoEditPage">
+    <a href="#contribution-events" class="right" style="margin-top: 1.75rem;">
+        <span class="peerReviewStatusContainer" data-status="${video.peerReviewStatus}">
+            Peer-review: <code>${video.peerReviewStatus}</code>
+        </span>
+    </a>
+
     <h4><content:gettitle /></h4>
     <div class="card-panel checksumGitHub-${video.checksumGitHub != null}">
         <video poster="<spring:url value='/video/${video.id}_r${video.revisionNumber}_thumbnail.png' />" controls>

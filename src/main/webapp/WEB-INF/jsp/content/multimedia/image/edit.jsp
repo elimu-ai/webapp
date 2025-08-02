@@ -3,8 +3,13 @@
 </content:title>
 
 <content:section cssId="imageEditPage">
+    <a href="#contribution-events" class="right" style="margin-top: 1.75rem;">
+        <span class="peerReviewStatusContainer" data-status="${image.peerReviewStatus}">
+            Peer-review: <code>${image.peerReviewStatus}</code>
+        </span>
+    </a>
+
     <h4><content:gettitle /></h4>
-    
     <div class="card-panel">
         <form:form modelAttribute="image" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="image" />

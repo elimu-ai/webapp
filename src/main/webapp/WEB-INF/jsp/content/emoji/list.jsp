@@ -53,7 +53,16 @@
                                 </c:forEach>
                             </td>
                             <td>
-                                #${emoji.revisionNumber}
+                                <p>
+                                    #${emoji.revisionNumber}
+                                </p>
+                                <p>
+                                    <a href="<spring:url value='/content/storybook/edit/${emoji.id}#contribution-events' />" style="display: flex;">
+                                        <span class="peerReviewStatusContainer" data-status="${emoji.peerReviewStatus}">
+                                            Peer-review: <code>${emoji.peerReviewStatus}</code>
+                                        </span>
+                                    </a>
+                                </p>
                             </td>
                         </tr>
                     </c:forEach>

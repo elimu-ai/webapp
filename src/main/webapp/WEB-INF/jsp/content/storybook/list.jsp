@@ -44,17 +44,11 @@
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p>
-                            <c:choose>
-                                <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge deep-purple lighten-2"></span>
-                                </c:when>
-                                <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge blue lighten-2"></span>
-                                </c:when>
-                                <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge orange darken-2"></span>
-                                </c:when>
-                            </c:choose>
+                            <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" style="display: flex;">
+                                <span class="peerReviewStatusContainer" data-status="${storyBook.peerReviewStatus}">
+                                    Peer-review: <code>${storyBook.peerReviewStatus}</code>
+                                </span>
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -84,17 +78,11 @@
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p>
-                            <c:choose>
-                                <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge deep-purple lighten-2"></span>
-                                </c:when>
-                                <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge blue lighten-2"></span>
-                                </c:when>
-                                <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge orange darken-2"></span>
-                                </c:when>
-                            </c:choose>
+                            <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" style="display: flex;">
+                                <span class="peerReviewStatusContainer" data-status="${storyBook.peerReviewStatus}">
+                                    Peer-review: <code>${storyBook.peerReviewStatus}</code>
+                                </span>
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -124,17 +112,11 @@
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p>
-                            <c:choose>
-                                <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge deep-purple lighten-2"></span>
-                                </c:when>
-                                <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge blue lighten-2"></span>
-                                </c:when>
-                                <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge orange darken-2"></span>
-                                </c:when>
-                            </c:choose>
+                            <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" style="display: flex;">
+                                <span class="peerReviewStatusContainer" data-status="${storyBook.peerReviewStatus}">
+                                    Peer-review: <code>${storyBook.peerReviewStatus}</code>
+                                </span>
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -164,17 +146,11 @@
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p>
-                            <c:choose>
-                                <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge deep-purple lighten-2"></span>
-                                </c:when>
-                                <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge blue lighten-2"></span>
-                                </c:when>
-                                <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
-                                    <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge orange darken-2"></span>
-                                </c:when>
-                            </c:choose>
+                            <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" style="display: flex;">
+                                <span class="peerReviewStatusContainer" data-status="${storyBook.peerReviewStatus}">
+                                    Peer-review: <code>${storyBook.peerReviewStatus}</code>
+                                </span>
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -202,17 +178,11 @@
                         <div class="card-content">
                             <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                             <p>
-                                <c:choose>
-                                    <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
-                                        <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge deep-purple lighten-2"></span>
-                                    </c:when>
-                                    <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
-                                        <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge blue lighten-2"></span>
-                                    </c:when>
-                                    <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
-                                        <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge orange darken-2"></span>
-                                    </c:when>
-                                </c:choose>
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" style="display: flex;">
+                                    <span class="peerReviewStatusContainer" data-status="${storyBook.peerReviewStatus}">
+                                        Peer-review: <code>${storyBook.peerReviewStatus}</code>
+                                    </span>
+                                </a>
                             </p>
                         </div>
                     </div>

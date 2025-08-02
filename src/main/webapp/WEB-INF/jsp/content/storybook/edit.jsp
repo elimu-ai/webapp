@@ -3,18 +3,10 @@
 </content:title>
 
 <content:section cssId="storyBookEditPage">
-    <a href="#contribution-events" class="right" style="margin-top: 1.14rem;">
-        <c:choose>
-            <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
-                <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge deep-purple lighten-2"></span>
-            </c:when>
-            <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
-                <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge blue lighten-2"></span>
-            </c:when>
-            <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
-                <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge orange darken-2"></span>
-            </c:when>
-        </c:choose>
+    <a href="#contribution-events" class="right" style="margin-top: 1.75rem;">
+        <span class="peerReviewStatusContainer" data-status="${storyBook.peerReviewStatus}">
+            Peer-review: <code>${storyBook.peerReviewStatus}</code>
+        </span>
     </a>
     
     <h4><content:gettitle /></h4>

@@ -3,22 +3,11 @@
 </content:title>
 
 <content:section cssId="letterEditPage">
-    <c:choose>
-        <c:when test="${letter.peerReviewStatus == 'APPROVED'}">
-            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
-        </c:when>
-        <c:when test="${letter.peerReviewStatus == 'NOT_APPROVED'}">
-            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
-        </c:when>
-        <c:otherwise>
-            <c:set var="peerReviewStatusColor" value="" />
-        </c:otherwise>
-    </c:choose>
-    <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
-        <a href="#contribution-events">
-            Peer-review: ${letter.peerReviewStatus}
-        </a>
-    </div>
+    <a href="#contribution-events" class="right" style="margin-top: 1.75rem;">
+        <span class="peerReviewStatusContainer" data-status="${letter.peerReviewStatus}">
+            Peer-review: <code>${letter.peerReviewStatus}</code>
+        </span>
+    </a>
     
     <h4><content:gettitle /></h4>
     <div class="card-panel">
