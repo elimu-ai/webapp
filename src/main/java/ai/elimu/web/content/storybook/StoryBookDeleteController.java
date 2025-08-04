@@ -94,11 +94,11 @@ public class StoryBookDeleteController {
 
         // Delete storybook
         storyBookDao.delete(storyBook);
-        
-        DiscordHelper.postToChannel(Channel.CONTENT, "Storybook deleted: \"" + storyBook.getTitle() + "\" (ID " + storyBook.getId() + ")");
 
         // Refresh the REST API cache
         storyBooksJsonService.refreshStoryBooksJSONArray();
+
+        DiscordHelper.postToChannel(Channel.CONTENT, "Storybook deleted: \"" + storyBook.getTitle() + "\" (ID " + storyBook.getId() + ")");
 
         return "redirect:/content/storybook/list";
     }
