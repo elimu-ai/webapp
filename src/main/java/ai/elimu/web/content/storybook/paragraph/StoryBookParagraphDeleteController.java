@@ -30,11 +30,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StoryBookParagraphDeleteController {
 
   private final StoryBookDao storyBookDao;
-
   private final StoryBookContributionEventDao storyBookContributionEventDao;
-
   private final StoryBookParagraphDao storyBookParagraphDao;
-
   private final StoryBooksJsonService storyBooksJsonService;
 
   @GetMapping
@@ -45,7 +42,7 @@ public class StoryBookParagraphDeleteController {
     log.info("contributor.getRoles(): " + contributor.getRoles());
     if (!contributor.getRoles().contains(Role.EDITOR)) {
       // TODO: return HttpStatus.FORBIDDEN
-      throw new IllegalAccessError("Missing role for access");
+      throw new IllegalAccessError("Missing role: " + Role.EDITOR);
     }
 
     StoryBookParagraph storyBookParagraphToBeDeleted = storyBookParagraphDao.read(id);

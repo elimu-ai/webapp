@@ -27,13 +27,13 @@ public class ImageDeleteController {
     // Before deleting, remove any labels
     // TODO
 
+    // Before deleting, remove any image contribution events
+    // TODO
+
     // Delete the image from the database
     // TODO
 //        Image image = imageDao.read(id);
 //        imageDao.delete(image);
-
-    // Store contribution event
-    // TODO
 
     return "redirect:/content/multimedia/image/list";
   }

@@ -48,7 +48,7 @@ public class SoundUsageCountScheduler {
       }
     } catch (Exception e) {
       log.error("Error in scheduled task:", e);
-      DiscordHelper.postToChannel(Channel.CONTENT, "Error in `" + e.getClass() + ": " + e.getMessage() + "`");
+      DiscordHelper.postToChannel(Channel.CONTENT, "Error in " + getClass().getSimpleName() + ":`" + e.getClass() + ": " + e.getMessage() + "`");
     }
 
     log.info("execute complete");
