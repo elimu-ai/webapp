@@ -12,14 +12,15 @@ import lombok.Setter;
 @Entity
 public class StoryBookLearningEvent extends LearningEvent {
 
-  private Long storyBookId;
+    @NotNull
+    private String storyBookTitle;
 
-  @NotNull
-  private String storyBookTitle;
+    private Long storyBookId;
 
-  /**
-   * This field will only be populated if a corresponding {@link StoryBook} can be found in the database for the {@link #storyBookId}.
-   */
-  @ManyToOne
-  private StoryBook storyBook;
+    /**
+     * This field will only be populated if a corresponding {@link StoryBook}
+     * can be found in the database for the {@link #storyBookId}.
+     */
+    @ManyToOne
+    private StoryBook storyBook;
 }

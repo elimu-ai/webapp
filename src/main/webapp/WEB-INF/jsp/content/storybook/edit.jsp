@@ -110,14 +110,13 @@
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
+            <a href="<spring:url value='/content/storybook/delete/${storyBook.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
         </form:form>
     </div>
     
     <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
         <a name="ch-id-${storyBookChapter.id}"></a>
-        <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
-            <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="Delete">delete</i></a>
-        </c:if>
+        <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="Delete">delete</i></a>
         <h5 style="margin-top: 1em;" class="grey-text">Chapter&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
