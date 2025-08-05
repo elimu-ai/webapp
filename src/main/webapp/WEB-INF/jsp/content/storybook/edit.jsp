@@ -110,7 +110,7 @@
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
-            <a href="<spring:url value='/content/storybook/delete/${storyBook.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
+            <a href="<spring:url value='/content/storybook/delete/${storyBook.id}' />" class="waves-effect waves-red red-text btn-flat <c:if test='${empty contributor}'>disabled</c:if> right">Delete</a>
         </form:form>
     </div>
     
