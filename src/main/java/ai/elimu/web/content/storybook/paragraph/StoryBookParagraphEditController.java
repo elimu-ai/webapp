@@ -34,10 +34,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StoryBookParagraphEditController {
 
   private final StoryBookDao storyBookDao;
-
-  private final StoryBookContributionEventDao storyBookContributionEventDao;
-
   private final StoryBookParagraphDao storyBookParagraphDao;
+  private final StoryBookContributionEventDao storyBookContributionEventDao;
 
   private final StoryBooksJsonService storyBooksJsonService;
 
@@ -80,6 +78,9 @@ public class StoryBookParagraphEditController {
       storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
       storyBookDao.update(storyBook);
 
+      // Refresh the REST API cache
+      storyBooksJsonService.refreshStoryBooksJSONArray();
+
       // Store contribution event
       StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
       storyBookContributionEvent.setContributor(contributor);
@@ -106,9 +107,6 @@ public class StoryBookParagraphEditController {
           null,
           embedThumbnailUrl
       );
-
-      // Refresh the REST API cache
-      storyBooksJsonService.refreshStoryBooksJSONArray();
 
       return "redirect:/content/storybook/edit/" +
           storyBookParagraph.getStoryBookChapter().getStoryBook().getId() +

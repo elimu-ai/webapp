@@ -55,11 +55,27 @@ public class StoryBookParagraphDeleteController {
     log.info("Deleting StoryBookParagraph with ID " + storyBookParagraphToBeDeleted.getId());
     storyBookParagraphDao.delete(storyBookParagraphToBeDeleted);
 
+    // Update the sorting order of the remaining paragraphs
+    List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookParagraphToBeDeleted.getStoryBookChapter());
+    log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+    for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+      log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId() + ", storyBookParagraph.getSortOrder(): " + storyBookParagraph.getSortOrder());
+      if (storyBookParagraph.getSortOrder() > storyBookParagraphToBeDeleted.getSortOrder()) {
+        // Reduce sort order by 1
+        storyBookParagraph.setSortOrder(storyBookParagraph.getSortOrder() - 1);
+        storyBookParagraphDao.update(storyBookParagraph);
+        log.info("storyBookParagraph.getSortOrder() (after update): " + storyBookParagraph.getSortOrder());
+      }
+    }
+
     // Update the storybook's metadata
     StoryBook storyBook = storyBookParagraphToBeDeleted.getStoryBookChapter().getStoryBook();
     storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
     storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
     storyBookDao.update(storyBook);
+
+    // Refresh the REST API cache
+    storyBooksJsonService.refreshStoryBooksJSONArray();
 
     // Store contribution event
     StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
@@ -84,22 +100,6 @@ public class StoryBookParagraphDeleteController {
         null,
         embedThumbnailUrl
     );
-
-    // Update the sorting order of the remaining paragraphs
-    List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookParagraphToBeDeleted.getStoryBookChapter());
-    log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
-    for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-      log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId() + ", storyBookParagraph.getSortOrder(): " + storyBookParagraph.getSortOrder());
-      if (storyBookParagraph.getSortOrder() > storyBookParagraphToBeDeleted.getSortOrder()) {
-        // Reduce sort order by 1
-        storyBookParagraph.setSortOrder(storyBookParagraph.getSortOrder() - 1);
-        storyBookParagraphDao.update(storyBookParagraph);
-        log.info("storyBookParagraph.getSortOrder() (after update): " + storyBookParagraph.getSortOrder());
-      }
-    }
-
-    // Refresh the REST API cache
-    storyBooksJsonService.refreshStoryBooksJSONArray();
 
     return "redirect:/content/storybook/edit/" + storyBook.getId() + "#ch-id-" + storyBookParagraphToBeDeleted.getStoryBookChapter().getId();
   }
