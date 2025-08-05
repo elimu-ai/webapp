@@ -1,7 +1,5 @@
 package ai.elimu.web.content.storybook.chapter;
 
-import ai.elimu.dao.ImageContributionEventDao;
-import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
@@ -9,9 +7,7 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.entity.content.StoryBook;
 import ai.elimu.entity.content.StoryBookChapter;
 import ai.elimu.entity.content.StoryBookParagraph;
-import ai.elimu.entity.content.multimedia.Image;
 import ai.elimu.entity.contributor.Contributor;
-import ai.elimu.entity.contributor.ImageContributionEvent;
 import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.entity.enums.Role;
@@ -39,9 +35,6 @@ public class StoryBookChapterDeleteController {
   private final StoryBookChapterDao storyBookChapterDao;
   private final StoryBookParagraphDao storyBookParagraphDao;
   private final StoryBookContributionEventDao storyBookContributionEventDao;
-
-  private final ImageDao imageDao;
-  private final ImageContributionEventDao imageContributionEventDao;
 
   private final StoryBooksJsonService storyBooksJsonService;
 
@@ -72,56 +65,11 @@ public class StoryBookChapterDeleteController {
     log.info("Deleting StoryBookChapter with ID " + storyBookChapterToBeDeleted.getId());
     storyBookChapterDao.delete(storyBookChapterToBeDeleted);
 
-    // Delete the chapter's image (if any)
-    Image chapterImage = storyBookChapterToBeDeleted.getImage();
-    log.info("chapterImage: " + chapterImage);
-    if (chapterImage != null) {
-      // Remove content labels
-      chapterImage.setLiteracySkills(null);
-      chapterImage.setNumeracySkills(null);
-      chapterImage.setLetters(null);
-      chapterImage.setNumbers(null);
-      chapterImage.setWords(null);
-      imageDao.update(chapterImage);
-
-      // Remove contribution events
-      for (ImageContributionEvent imageContributionEvent : imageContributionEventDao.readAll(chapterImage)) {
-        log.warn("Deleting ImageContributionEvent from the database");
-        imageContributionEventDao.delete(imageContributionEvent);
-      }
-
-      log.warn("Deleting the chapter image from the database");
-      imageDao.delete(chapterImage);
-    }
-
     // Update the StoryBook's metadata
     StoryBook storyBook = storyBookChapterToBeDeleted.getStoryBook();
     storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
     storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
     storyBookDao.update(storyBook);
-
-    // Store contribution event
-    StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
-    storyBookContributionEvent.setContributor(contributor);
-    storyBookContributionEvent.setTimestamp(Calendar.getInstance());
-    storyBookContributionEvent.setStoryBook(storyBook);
-    storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-    storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + " (🤖 auto-generated comment)");
-    storyBookContributionEventDao.create(storyBookContributionEvent);
-
-    String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
-    String embedThumbnailUrl = null;
-    if (storyBook.getCoverImage() != null) {
-      embedThumbnailUrl = storyBook.getCoverImage().getUrl();
-    }
-    DiscordHelper.postToChannel(
-        Channel.CONTENT,
-        "Storybook chapter deleted: " + contentUrl,
-        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-        null,
-        embedThumbnailUrl
-    );
 
     // Update the sorting order of the remaining chapters
     List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
@@ -138,6 +86,29 @@ public class StoryBookChapterDeleteController {
 
     // Refresh the REST API cache
     storyBooksJsonService.refreshStoryBooksJSONArray();
+
+    // Store contribution event
+    StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+    storyBookContributionEvent.setContributor(contributor);
+    storyBookContributionEvent.setTimestamp(Calendar.getInstance());
+    storyBookContributionEvent.setStoryBook(storyBook);
+    storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+    storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + "/" + storyBookChapters.size()  + " (🤖 auto-generated comment)");
+    storyBookContributionEventDao.create(storyBookContributionEvent);
+
+    String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
+    String embedThumbnailUrl = null;
+    if (storyBook.getCoverImage() != null) {
+      embedThumbnailUrl = storyBook.getCoverImage().getUrl();
+    }
+    DiscordHelper.postToChannel(
+        Channel.CONTENT,
+        "Storybook chapter deleted: " + contentUrl,
+        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+        null,
+        embedThumbnailUrl
+    );
 
     return "redirect:/content/storybook/edit/" + storyBookId;
   }
