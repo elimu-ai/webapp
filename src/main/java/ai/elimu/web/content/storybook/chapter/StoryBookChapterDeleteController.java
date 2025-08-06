@@ -93,7 +93,7 @@ public class StoryBookChapterDeleteController {
     storyBookContributionEvent.setTimestamp(Calendar.getInstance());
     storyBookContributionEvent.setStoryBook(storyBook);
     storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-    storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + "/" + storyBookChapters.size()  + " (🤖 auto-generated comment)");
+    storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + " (🤖 auto-generated comment)");
     storyBookContributionEventDao.create(storyBookContributionEvent);
 
     String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
