@@ -110,13 +110,15 @@
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
-            <a href="<spring:url value='/content/storybook/delete/${storyBook.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
+            <c:if test="${not empty contributor}">
+                <a href="<spring:url value='/content/storybook/delete/${storyBook.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
+            </c:if>
         </form:form>
     </div>
     
     <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
         <a name="ch-id-${storyBookChapter.id}"></a>
-        <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="Delete">delete</i></a>
+        <a class="storyBookChapterEditLink right" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/edit/${storyBookChapter.id}' />"><i class="material-icons" title="Edit chapter">edit</i></a>
         <h5 style="margin-top: 1em;" class="grey-text">Chapter&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
@@ -126,7 +128,7 @@
             </c:if>
             
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
-                <p class="storyBookParagraph"><a class="storyBookParagraphEditLink right" href="<spring:url value='/content/storybook/paragraph/edit/${storyBookParagraph.id}' />"><i class="material-icons" title="Edit">edit</i></a><c:out value="" />
+                <p class="storyBookParagraph"><a class="storyBookParagraphEditLink right" href="<spring:url value='/content/storybook/paragraph/edit/${storyBookParagraph.id}' />"><i class="material-icons" title="Edit paragraph">edit</i></a><c:out value="" />
                     <c:forEach var="wordInOriginalText" items="${fn:split(fn:trim(storyBookParagraph.originalText), ' ')}" varStatus="status">
                         <c:set var="word" value="${storyBookParagraph.words[status.index]}" />
                         <c:choose>
