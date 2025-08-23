@@ -2,6 +2,8 @@ package ai.elimu.entity.content;
 
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
+import ai.elimu.model.v2.gson.content.WordGson;
+import ai.elimu.rest.v2.JpaToGsonConverter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -45,10 +47,7 @@ public class Word extends Content {
   private SpellingConsistency spellingConsistency;
 
   public String toString() {
-    String letters = "";
-    for (LetterSound letterSound : letterSounds) {
-      letters += letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
-    }
-    return letters;
+      WordGson wordGson = JpaToGsonConverter.getWordGson(this);
+      return wordGson.toString();
   }
 }
