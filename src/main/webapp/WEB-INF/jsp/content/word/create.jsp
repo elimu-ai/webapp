@@ -15,7 +15,7 @@
                 </div>
                 
                 <c:if test="${not empty word.text}">
-                    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+                    <c:if test="${(applicationScope.configProperties['content.language'] == 'HIN') || (applicationScope.configProperties['content.language'] == 'THA')}">
                           <%-- Extract and display each letter of the word. E.g. "न ह ी ं" for "नहीं" --%>
                         <div class="col s12 grey-text" style="font-size: 4em;">
                             <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
