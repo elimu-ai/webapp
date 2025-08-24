@@ -84,9 +84,7 @@
                                 
                                 <label>word.toString()</label>
                                 <div style="font-size: 2em;">
-                                    <a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />"
-                                        <c:if test="${word.toString() != word.getText()}">style="color: #bf360c; background-color: #ffccbc;"</c:if>
-                                    >"${word}"</a>
+                                    <a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />">"${word}"</a>
                                 </div>
 
                                 <div id="letterSoundsContainer">
