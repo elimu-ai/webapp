@@ -14,14 +14,15 @@ import jakarta.persistence.OrderColumn;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Setter
 @Entity
+@Slf4j
 public class Word extends Content {
 
   @Deprecated // TODO: replace with list of letterSounds
@@ -48,6 +49,7 @@ public class Word extends Content {
 
   public String toString() {
       WordGson wordGson = JpaToGsonConverter.getWordGson(this);
+      log.info("wordGson.getId(): " + wordGson.getId());
       return wordGson.toString();
   }
 }
