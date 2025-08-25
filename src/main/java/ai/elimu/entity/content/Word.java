@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Word extends Content {
 
-  @Deprecated // TODO: replace with list of letterSounds
+  @Deprecated // TODO: will be replaced by `toString()`
   @NotNull
   private String text;
 
