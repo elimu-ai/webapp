@@ -24,6 +24,7 @@ import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
@@ -36,6 +37,7 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -185,9 +187,16 @@ public class VideoEditController {
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
+      HttpServletResponse response,
       HttpSession session,
       @PathVariable Long id) {
     log.info("handleAddContentLabelRequest");
+
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
+    if (contributor == null) {
+      response.setStatus(HttpStatus.FORBIDDEN.value());
+      return "error";
+    }
 
     log.info("id: " + id);
     Video video = videoDao.read(id);
@@ -204,7 +213,7 @@ public class VideoEditController {
         videoDao.update(video);
 
         VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
-        videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        videoContributionEvent.setContributor(contributor);
         videoContributionEvent.setTimestamp(Calendar.getInstance());
         videoContributionEvent.setVideo(video);
         videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
@@ -225,7 +234,7 @@ public class VideoEditController {
         videoDao.update(video);
 
         VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
-        videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        videoContributionEvent.setContributor(contributor);
         videoContributionEvent.setTimestamp(Calendar.getInstance());
         videoContributionEvent.setVideo(video);
         videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
@@ -246,7 +255,7 @@ public class VideoEditController {
         videoDao.update(video);
 
         VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
-        videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        videoContributionEvent.setContributor(contributor);
         videoContributionEvent.setTimestamp(Calendar.getInstance());
         videoContributionEvent.setVideo(video);
         videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
@@ -262,9 +271,16 @@ public class VideoEditController {
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
+      HttpServletResponse response,
       HttpSession session,
       @PathVariable Long id) {
     log.info("handleRemoveContentLabelRequest");
+
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
+    if (contributor == null) {
+      response.setStatus(HttpStatus.FORBIDDEN.value());
+      return "error";
+    }
 
     log.info("id: " + id);
     Video video = videoDao.read(id);
@@ -286,7 +302,7 @@ public class VideoEditController {
       videoDao.update(video);
 
       VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
-      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setContributor(contributor);
       videoContributionEvent.setTimestamp(Calendar.getInstance());
       videoContributionEvent.setVideo(video);
       videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
@@ -311,7 +327,7 @@ public class VideoEditController {
       videoDao.update(video);
 
       VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
-      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setContributor(contributor);
       videoContributionEvent.setTimestamp(Calendar.getInstance());
       videoContributionEvent.setVideo(video);
       videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
@@ -336,7 +352,7 @@ public class VideoEditController {
       videoDao.update(video);
 
       VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
-      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setContributor(contributor);
       videoContributionEvent.setTimestamp(Calendar.getInstance());
       videoContributionEvent.setVideo(video);
       videoContributionEvent.setRevisionNumber(video.getRevisionNumber());

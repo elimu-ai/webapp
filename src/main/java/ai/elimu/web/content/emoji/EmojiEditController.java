@@ -11,6 +11,7 @@ import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -23,6 +24,7 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -110,9 +112,16 @@ public class EmojiEditController {
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
+      HttpServletResponse response,
       HttpSession session,
       @PathVariable Long id) {
     log.info("handleAddContentLabelRequest");
+
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
+    if (contributor == null) {
+      response.setStatus(HttpStatus.FORBIDDEN.value());
+      return "error";
+    }
 
     log.info("id: " + id);
     Emoji emoji = emojiDao.read(id);
@@ -129,7 +138,7 @@ public class EmojiEditController {
         emojiDao.update(emoji);
 
         EmojiContributionEvent emojiContributionEvent = new EmojiContributionEvent();
-        emojiContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        emojiContributionEvent.setContributor(contributor);
         emojiContributionEvent.setTimestamp(Calendar.getInstance());
         emojiContributionEvent.setEmoji(emoji);
         emojiContributionEvent.setRevisionNumber(emoji.getRevisionNumber());
@@ -145,9 +154,16 @@ public class EmojiEditController {
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
+      HttpServletResponse response,
       HttpSession session,
       @PathVariable Long id) {
     log.info("handleRemoveContentLabelRequest");
+
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
+    if (contributor == null) {
+      response.setStatus(HttpStatus.FORBIDDEN.value());
+      return "error";
+    }
 
     log.info("id: " + id);
     Emoji emoji = emojiDao.read(id);
@@ -169,7 +185,7 @@ public class EmojiEditController {
       emojiDao.update(emoji);
 
       EmojiContributionEvent emojiContributionEvent = new EmojiContributionEvent();
-      emojiContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      emojiContributionEvent.setContributor(contributor);
       emojiContributionEvent.setTimestamp(Calendar.getInstance());
       emojiContributionEvent.setEmoji(emoji);
       emojiContributionEvent.setRevisionNumber(emoji.getRevisionNumber());

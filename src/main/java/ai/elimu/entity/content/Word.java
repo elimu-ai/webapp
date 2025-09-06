@@ -2,6 +2,8 @@ package ai.elimu.entity.content;
 
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
+import ai.elimu.model.v2.gson.content.WordGson;
+import ai.elimu.rest.v2.JpaToGsonConverter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -12,17 +14,18 @@ import jakarta.persistence.OrderColumn;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Setter
 @Entity
+@Slf4j
 public class Word extends Content {
 
-  @Deprecated // TODO: replace with list of letterSounds
+  @Deprecated // TODO: will be replaced by `toString()`
   @NotNull
   private String text;
 
@@ -45,10 +48,8 @@ public class Word extends Content {
   private SpellingConsistency spellingConsistency;
 
   public String toString() {
-    String letters = "";
-    for (LetterSound letterSound : letterSounds) {
-      letters += letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
-    }
-    return letters;
+      WordGson wordGson = JpaToGsonConverter.getWordGson(this);
+      log.info("wordGson.getId(): " + wordGson.getId());
+      return wordGson.toString();
   }
 }

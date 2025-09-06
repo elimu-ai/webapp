@@ -75,16 +75,20 @@
                                 </div>
                             </td>
                             <td>
-                                <div style="float: right; text-align: right;">
-                                    <label>word.getText()</label>
-                                    <div style="font-size: 2em;">
-                                        "${word.text}"
+                                <div class="wordTextStatus" data-status="${word == word.text}">
+                                    <div style="float: right; text-align: right;">
+                                        <label>word.getText()</label>
+                                        <div style="font-size: 2em;">
+                                            "${word.text}"
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <label>word.toString()</label>
-                                <div style="font-size: 2em;">
-                                    <a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />">"${word}"</a>
+                                    
+                                    <label>word.toString()</label>
+                                    <div style="font-size: 2em;">
+                                        <a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />">
+                                            "${word}"
+                                        </a>
+                                    </div>
                                 </div>
 
                                 <div id="letterSoundsContainer">

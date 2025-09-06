@@ -178,7 +178,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         letterDao.create(letterM);
         
         Letter letterAA = new Letter();
-        letterAA.setText("า");
+        letterAA.setText("◌า");
         letterDao.create(letterAA);
 
         Letter letterS = new Letter();

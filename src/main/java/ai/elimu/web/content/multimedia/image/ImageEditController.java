@@ -26,6 +26,7 @@ import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.File;
@@ -44,6 +45,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -253,14 +255,19 @@ public class ImageEditController {
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
+      HttpServletResponse response,
       HttpSession session,
       @PathVariable Long id) {
     log.info("handleAddContentLabelRequest");
+    
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
+    if (contributor == null) {
+      response.setStatus(HttpStatus.FORBIDDEN.value());
+      return "error";
+    }
 
     log.info("id: " + id);
     Image image = imageDao.read(id);
-
-    Contributor contributor = (Contributor) session.getAttribute("contributor");
 
     String letterIdParameter = request.getParameter("letterId");
     log.info("letterIdParameter: " + letterIdParameter);
@@ -332,14 +339,19 @@ public class ImageEditController {
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
+      HttpServletResponse response,
       HttpSession session,
       @PathVariable Long id) {
     log.info("handleRemoveContentLabelRequest");
 
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
+    if (contributor == null) {
+      response.setStatus(HttpStatus.FORBIDDEN.value());
+      return "error";
+    }
+
     log.info("id: " + id);
     Image image = imageDao.read(id);
-
-    Contributor contributor = (Contributor) session.getAttribute("contributor");
 
     String letterIdParameter = request.getParameter("letterId");
     log.info("letterIdParameter: " + letterIdParameter);
