@@ -24,15 +24,13 @@
                 </div>
                 
                 <c:if test="${not empty word.text}">
-                    <c:if test="${(applicationScope.configProperties['content.language'] == 'HIN') || (applicationScope.configProperties['content.language'] == 'THA')}">
-                          <%-- Extract and display each letter of the word. E.g. "न ह ी ं" for "नहीं" --%>
-                        <div class="col s12 grey-text" style="font-size: 4em;">
-                            <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
-                                <c:set var="letter" value="${fn:substring(word.text, status.index, status.index + 1)}" />
-                                <c:out value="${letter}" /><c:out value=" " />
-                            </c:forEach>
-                        </div>
-                    </c:if>
+                    <%-- Extract and display each letter/symbol in the word. E.g. "न ह ी ं" for "नहीं" --%>
+                    <div class="col s12 grey-text" style="font-size: 4em;">
+                        <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
+                            <c:set var="letter" value="${fn:substring(word.text, status.index, status.index + 1)}" />
+                            <c:out value="${letter}" /><c:out value=" " />
+                        </c:forEach>
+                    </div>
                 </c:if>
             </div>
                 
