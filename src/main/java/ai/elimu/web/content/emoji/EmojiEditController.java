@@ -92,19 +92,24 @@ public class EmojiEditController {
 
       return "content/emoji/edit";
     } else {
-      emoji.setRevisionNumber(emoji.getRevisionNumber() + 1);
-      emojiDao.update(emoji);
+      Emoji persistentEmoji = emojiDao.read(emoji.getId());
+      persistentEmoji.setGlyph(emoji.getGlyph());
+      persistentEmoji.setUnicodeVersion(emoji.getUnicodeVersion());
+      persistentEmoji.setUnicodeEmojiVersion(emoji.getUnicodeEmojiVersion());
+      persistentEmoji.setRevisionNumber(persistentEmoji.getRevisionNumber() + 1);
+
+      emojiDao.update(persistentEmoji);
 
       EmojiContributionEvent emojiContributionEvent = new EmojiContributionEvent();
       emojiContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
       emojiContributionEvent.setTimestamp(Calendar.getInstance());
-      emojiContributionEvent.setEmoji(emoji);
-      emojiContributionEvent.setRevisionNumber(emoji.getRevisionNumber());
+      emojiContributionEvent.setEmoji(persistentEmoji);
+      emojiContributionEvent.setRevisionNumber(persistentEmoji.getRevisionNumber());
       emojiContributionEventDao.create(emojiContributionEvent);
 
-      DiscordHelper.postToChannel(Channel.CONTENT, "Emoji " + emoji.getGlyph() + " updated: " + DomainHelper.getBaseUrl() + "/content/emoji/edit/" + emoji.getId());
+      DiscordHelper.postToChannel(Channel.CONTENT, "Emoji " + persistentEmoji.getGlyph() + " updated: " + DomainHelper.getBaseUrl() + "/content/emoji/edit/" + persistentEmoji.getId());
 
-      return "redirect:/content/emoji/list#" + emoji.getId();
+      return "redirect:/content/emoji/list#" + persistentEmoji.getId();
     }
   }
 
