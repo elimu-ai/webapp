@@ -213,6 +213,9 @@
                 <li>
                     <a href="https://translate.google.com/?sl=vi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
                 </li>
+                <li>
+                    <a href="https://vctrle.github.io/to-ipa/vietnamese" target="_blank">Vietnamese to IPA Converter</a>
+                </li>
             </ol>
         </div>
     </c:if>
