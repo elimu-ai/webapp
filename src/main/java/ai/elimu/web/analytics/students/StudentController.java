@@ -179,13 +179,13 @@ public class StudentController {
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
-        log.info("weekAsString: " + weekAsString);
+        log.debug("weekAsString: " + weekAsString);
         Integer correctCount = correctCountByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("correctCount: " + correctCount);
+        log.debug("correctCount: " + correctCount);
         Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
-        log.info("timeSpentMsSum: " + timeSpentMsSum);
+        log.debug("timeSpentMsSum: " + timeSpentMsSum);
         Double correctPerMinute = (double) 60 * 1_000 * correctCount / timeSpentMsSum;
-        log.info("correctPerMinute: " + correctPerMinute);
+        log.debug("correctPerMinute: " + correctPerMinute);
         letterIdentificationSpeedAvgList_kukariri.add(correctPerMinute);
         week.add(Calendar.WEEK_OF_YEAR, 1);
       }
@@ -207,13 +207,13 @@ public class StudentController {
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
-        log.info("weekAsString: " + weekAsString);
+        log.debug("weekAsString: " + weekAsString);
         Integer correctCount = correctCountByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("correctCount: " + correctCount);
+        log.debug("correctCount: " + correctCount);
         Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
-        log.info("timeSpentMsSum: " + timeSpentMsSum);
+        log.debug("timeSpentMsSum: " + timeSpentMsSum);
         Double correctPerMinute = (double) 60 * 1_000 * correctCount / timeSpentMsSum;
-        log.info("correctPerMinute: " + correctPerMinute);
+        log.debug("correctPerMinute: " + correctPerMinute);
         readingSpeedAvgList_kukariri.add(correctPerMinute);
         week.add(Calendar.WEEK_OF_YEAR, 1);
       }
