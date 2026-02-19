@@ -53,7 +53,7 @@ public class WordCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (Word word : words) {
-      log.info("word.getText(): \"" + word.getText() + "\"");
+      log.debug("word.getText(): \"" + word.getText() + "\"");
 
       JSONArray letterSoundsJsonArray = new JSONArray();
       int index = 0;

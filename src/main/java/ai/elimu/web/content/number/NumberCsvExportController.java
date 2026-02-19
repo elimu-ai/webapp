@@ -48,7 +48,7 @@ public class NumberCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (Number number : numbers) {
-      log.info("number.getValue(): \"" + number.getValue() + "\"");
+      log.debug("number.getValue(): \"" + number.getValue() + "\"");
 
       JSONArray wordIdsJsonArray = new JSONArray();
       int index = 0;

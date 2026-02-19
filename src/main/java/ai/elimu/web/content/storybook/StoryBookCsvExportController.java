@@ -64,7 +64,7 @@ public class StoryBookCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (StoryBook storyBook : storyBooks) {
-      log.info("storyBook.getTitle(): \"" + storyBook.getTitle() + "\"");
+      log.debug("storyBook.getTitle(): \"" + storyBook.getTitle() + "\"");
 
       Long coverImageId = null;
       if (storyBook.getCoverImage() != null) {
@@ -74,9 +74,9 @@ public class StoryBookCsvExportController {
       // Store chapters as JSON objects
       JSONArray chaptersJsonArray = new JSONArray();
       List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
-      log.info("storyBookChapters.size(): " + storyBookChapters.size());
+      log.debug("storyBookChapters.size(): " + storyBookChapters.size());
       for (StoryBookChapter storyBookChapter : storyBookChapters) {
-        log.info("storyBookChapter.getId(): " + storyBookChapter.getId());
+        log.debug("storyBookChapter.getId(): " + storyBookChapter.getId());
 
         StoryBookChapterGson storyBookChapterGson = JpaToGsonConverter.getStoryBookChapterGson(storyBookChapter);
 
@@ -90,9 +90,9 @@ public class StoryBookCsvExportController {
 
         // Store paragraphs as JSON objects
         List<StoryBookParagraphGson> storyBookParagraphs = new ArrayList<>();
-        log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+        log.debug("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
-          log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
+          log.debug("storyBookParagraph.getId(): " + storyBookParagraph.getId());
 
           StoryBookParagraphGson storyBookParagraphGson = JpaToGsonConverter.getStoryBookParagraphGson(storyBookParagraph);
           storyBookParagraphGson.setWords(null);
@@ -102,10 +102,10 @@ public class StoryBookCsvExportController {
 
         String json = new Gson().toJson(storyBookChapterGson);
         JSONObject jsonObject = new JSONObject(json);
-        log.info("jsonObject: " + jsonObject);
+        log.debug("jsonObject: " + jsonObject);
         chaptersJsonArray.put(jsonObject);
       }
-      log.info("chaptersJsonArray: " + chaptersJsonArray);
+      log.debug("chaptersJsonArray: " + chaptersJsonArray);
 
       csvPrinter.printRecord(
           storyBook.getId(),
