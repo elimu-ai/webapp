@@ -38,9 +38,10 @@ public class LetterSoundsRestController {
       String json = new Gson().toJson(letterSoundGson);
       letterSoundsJsonArray.put(new JSONObject(json));
     }
+    log.info("letterSoundsJsonArray.length(): " + letterSoundsJsonArray.length());
 
     String jsonResponse = letterSoundsJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

@@ -38,9 +38,10 @@ public class WordsRestController {
       String json = new Gson().toJson(wordGson);
       wordsJsonArray.put(new JSONObject(json));
     }
+    log.info("wordsJsonArray.length(): " + wordsJsonArray.length());
 
     String jsonResponse = wordsJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

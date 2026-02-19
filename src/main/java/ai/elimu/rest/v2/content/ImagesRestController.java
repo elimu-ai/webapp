@@ -40,9 +40,10 @@ public class ImagesRestController {
       String json = new Gson().toJson(imageGson);
       imagesJsonArray.put(new JSONObject(json));
     }
+    log.info("imagesJsonArray.length(): " + imagesJsonArray.length());
 
     String jsonResponse = imagesJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

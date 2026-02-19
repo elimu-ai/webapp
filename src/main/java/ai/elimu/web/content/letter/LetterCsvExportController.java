@@ -44,7 +44,7 @@ public class LetterCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (Letter letter : letters) {
-      log.info("letter.getText(): \"" + letter.getText() + "\"");
+      log.debug("letter.getText(): \"" + letter.getText() + "\"");
 
       csvPrinter.printRecord(
           letter.getId(),

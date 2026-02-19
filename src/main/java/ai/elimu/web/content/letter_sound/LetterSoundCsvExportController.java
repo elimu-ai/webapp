@@ -49,7 +49,7 @@ public class LetterSoundCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (LetterSound letterSound : letterSounds) {
-      log.info("letterSound.getId(): \"" + letterSound.getId() + "\"");
+      log.debug("letterSound.getId(): \"" + letterSound.getId() + "\"");
 
       JSONArray letterIdsJsonArray = new JSONArray();
       int index = 0;
