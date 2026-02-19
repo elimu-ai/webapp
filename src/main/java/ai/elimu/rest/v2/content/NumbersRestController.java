@@ -38,9 +38,10 @@ public class NumbersRestController {
       String json = new Gson().toJson(numberGson);
       numbersJsonArray.put(new JSONObject(json));
     }
+    log.info("numbersJsonArray.length(): " + numbersJsonArray.length());
 
     String jsonResponse = numbersJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

@@ -40,9 +40,10 @@ public class VideosRestController {
       String json = new Gson().toJson(videoGson);
       videosJsonArray.put(new JSONObject(json));
     }
+    log.info("videosJsonArray.length(): " + videosJsonArray.length());
 
     String jsonResponse = videosJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }
