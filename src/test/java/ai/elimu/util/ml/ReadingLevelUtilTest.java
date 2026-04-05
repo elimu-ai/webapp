@@ -5,53 +5,30 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Simple tests for verifying that the machine learning model is not broken. 
+ * The test parameters are based on the regression lines visualized at 
+ * https://github.com/elimu-ai/ml-storybook-reading-level/tree/main/pmml/step1_prepare
+ */
 public class ReadingLevelUtilTest {
 
     @Test
     public void testPredictReadingLevel_Level1() {
-
-        int chapterCount = 12;
-        int paragraphCount = 18;
-        int wordCount = 150;
-
-        ReadingLevel result = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount);
-        assertEquals(ReadingLevel.LEVEL1, result, "Expected ReadingLevel to be LEVEL1, but got: " + result);
-
+        assertEquals(ReadingLevel.LEVEL1, ReadingLevelUtil.predictReadingLevel(10, 16, 100));
     }
 
     @Test
     public void testPredictReadingLevel_Level2() {
-
-        int chapterCount = 20;
-        int paragraphCount = 30;
-        int wordCount = 300;
-
-        ReadingLevel result = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount);
-        assertEquals(ReadingLevel.LEVEL2, result, "Expected ReadingLevel to be LEVEL2, but got: " + result);
-
+        assertEquals(ReadingLevel.LEVEL2, ReadingLevelUtil.predictReadingLevel(12, 32, 500));
     }
 
     @Test
     public void testPredictReadingLevel_Level3() {
-
-        int chapterCount = 25;
-        int paragraphCount = 40;
-        int wordCount = 350;
-
-        ReadingLevel result = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount);
-        assertEquals(ReadingLevel.LEVEL3, result, "Expected ReadingLevel to be LEVEL3, but got: " + result);
-
+        assertEquals(ReadingLevel.LEVEL3, ReadingLevelUtil.predictReadingLevel(15, 45, 900));
     }
 
     @Test
     public void testPredictReadingLevel_Level4() {
-
-        int chapterCount = 15;
-        int paragraphCount = 45;
-        int wordCount = 559;
-
-        ReadingLevel result = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount);
-        assertEquals(ReadingLevel.LEVEL4, result, "Expected ReadingLevel to be LEVEL4, but got: " + result);
-
+        assertEquals(ReadingLevel.LEVEL4, ReadingLevelUtil.predictReadingLevel(17, 60, 1_200));
     }
 }
