@@ -44,17 +44,6 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">queue_music</i> Syllables</span>
-                </div>
-                <div class="card-action">
-                    <a href="<spring:url value='/content/syllable/list' />">View list (${syllableCount})</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
                     <span class="card-title"><i class="material-icons">looks_one</i> Numbers</span>
                 </div>
                 <div class="card-action">
