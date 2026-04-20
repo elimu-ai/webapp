@@ -416,12 +416,6 @@
     </dependency>
 
     <dependency>
-      <groupId>com.googlecode.texhyphj</groupId>
-      <artifactId>texhyphj</artifactId>
-      <version>1.2</version>
-    </dependency>
-
-    <dependency>
       <groupId>net.dongliu</groupId>
       <artifactId>apk-parser</artifactId>
       <version>2.6.10</version>
