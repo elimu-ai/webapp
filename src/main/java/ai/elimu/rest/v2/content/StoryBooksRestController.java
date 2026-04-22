@@ -22,8 +22,10 @@ public class StoryBooksRestController {
     log.info("handleGetRequest");
 
     JSONArray storyBooksJsonArray = storyBooksJsonService.getStoryBooksJSONArray();
+    log.info("storyBooksJsonArray.length(): " + storyBooksJsonArray.length());
+    
     String jsonResponse = storyBooksJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

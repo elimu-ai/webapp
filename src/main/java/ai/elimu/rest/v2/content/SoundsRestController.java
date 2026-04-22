@@ -38,9 +38,10 @@ public class SoundsRestController {
       String json = new Gson().toJson(soundGson);
       soundsJsonArray.put(new JSONObject(json));
     }
+    log.info("soundsJsonArray.length(): " + soundsJsonArray.length());
 
     String jsonResponse = soundsJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

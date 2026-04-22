@@ -117,7 +117,7 @@ public class ContributorCsvExportController {
     log.info("videoContributionEventsTotal.size(): " + videoContributionEventsTotal.size());
 
     for (Contributor contributor : contributors) {
-      log.info("contributor.getId(): " + contributor.getId());
+      log.debug("contributor.getId(): " + contributor.getId());
 
       String ethereumAddress = "0x0000000000000000000000000000000000000000";
       if (contributor.getProviderIdWeb3() != null) {

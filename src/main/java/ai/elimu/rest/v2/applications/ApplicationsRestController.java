@@ -48,9 +48,10 @@ public class ApplicationsRestController {
       String json = new Gson().toJson(applicationGson);
       applicationsJsonArray.put(new JSONObject(json));
     }
+    log.info("applicationsJsonArray.length(): " + applicationsJsonArray.length());
 
     String jsonResponse = applicationsJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

@@ -71,7 +71,7 @@ public class SyllableUsageCountScheduler {
             .forEach(syllableText -> syllableFrequencyMap.put(syllableText, syllableFrequencyMap.getOrDefault(syllableText, 0) + syllableFrequencyMapForBook.get(syllableText)));
       }
 
-      log.info("syllableFrequencyMap: " + syllableFrequencyMap);
+      log.debug("syllableFrequencyMap: " + syllableFrequencyMap);
 
       for (String syllableText : syllableFrequencyMap.keySet()) {
         // Skip syllables that are actual words

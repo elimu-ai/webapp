@@ -38,9 +38,10 @@ public class LettersRestController {
       String json = new Gson().toJson(letterGson);
       lettersJsonArray.put(new JSONObject(json));
     }
+    log.info("lettersJsonArray.length(): " + lettersJsonArray.length());
 
     String jsonResponse = lettersJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

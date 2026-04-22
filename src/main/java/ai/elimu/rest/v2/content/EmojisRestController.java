@@ -40,9 +40,10 @@ public class EmojisRestController {
       String json = new Gson().toJson(emojiGson);
       emojisJsonArray.put(new JSONObject(json));
     }
+    log.info("emojisJsonArray.length(): " + emojisJsonArray.length());
 
     String jsonResponse = emojisJsonArray.toString();
-    log.info("jsonResponse: " + jsonResponse);
+    log.debug("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

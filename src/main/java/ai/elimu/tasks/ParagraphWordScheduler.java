@@ -41,10 +41,10 @@ public class ParagraphWordScheduler {
       List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll();
       log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
       for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-        log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
+        log.debug("storyBookParagraph.getId(): " + storyBookParagraph.getId());
 
         List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-        log.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+        log.debug("wordsInOriginalText.size(): " + wordsInOriginalText.size());
 
         // Look for matches of existing Words in the paragraph's original text
         List<Word> words = new ArrayList<>();

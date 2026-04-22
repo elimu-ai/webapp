@@ -48,7 +48,7 @@ public class EmojiCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (Emoji emoji : emojis) {
-      log.info("emoji.getGlyph(): \"" + emoji.getGlyph() + "\"");
+      log.debug("emoji.getGlyph(): \"" + emoji.getGlyph() + "\"");
 
       JSONArray wordIdsJsonArray = new JSONArray();
       int index = 0;
