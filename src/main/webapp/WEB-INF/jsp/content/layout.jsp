@@ -106,7 +106,6 @@
                         <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_fields</i>Letters</a></li>
                         <li><a href="<spring:url value='/content/sound/list' />"><i class="material-icons left">music_note</i>Sounds</a></li>
                         <li><a href="<spring:url value='/content/letter-sound/list' />"><i class="material-icons left">emoji_symbols</i>Letter-sounds</a></li>
-                        <li><a href="<spring:url value='/content/syllable/list' />"><i class="material-icons left">queue_music</i>Syllables</a></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i>Numbers</a></li>
                         <li><a href="<spring:url value='/content/word/list' />"><i class="material-icons left">sms</i>Words</a></li>
                         <li><a href="<spring:url value='/content/emoji/list' />"><i class="material-icons left">emoji_emotions</i>Emojis</a></li>

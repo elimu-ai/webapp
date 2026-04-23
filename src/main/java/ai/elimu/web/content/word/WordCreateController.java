@@ -3,13 +3,11 @@ package ai.elimu.web.content.word;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.content.Emoji;
 import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.content.LetterSound;
-import ai.elimu.entity.content.Syllable;
 import ai.elimu.entity.content.Word;
 import ai.elimu.entity.content.multimedia.Image;
 import ai.elimu.entity.contributor.Contributor;
@@ -54,8 +52,6 @@ public class WordCreateController {
   private final LetterSoundDao letterSoundDao;
 
   private final ImageDao imageDao;
-
-  private final SyllableDao syllableDao;
 
   private final WordContributionEventDao wordContributionEventDao;
 
@@ -142,12 +138,6 @@ public class WordCreateController {
           matchingImage.setWords(labeledWords);
           imageDao.update(matchingImage);
         }
-      }
-
-      // Delete syllables that are actual words
-      Syllable syllable = syllableDao.readByText(word.getText());
-      if (syllable != null) {
-        syllableDao.delete(syllable);
       }
 
       return "redirect:/content/word/list#" + word.getId();
