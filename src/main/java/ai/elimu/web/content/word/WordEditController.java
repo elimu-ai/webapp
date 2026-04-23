@@ -4,7 +4,6 @@ import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.StoryBookParagraphDao;
-import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
@@ -12,7 +11,6 @@ import ai.elimu.entity.content.Emoji;
 import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.content.LetterSound;
 import ai.elimu.entity.content.StoryBookParagraph;
-import ai.elimu.entity.content.Syllable;
 import ai.elimu.entity.content.Word;
 import ai.elimu.entity.content.multimedia.Image;
 import ai.elimu.entity.contributor.Contributor;
@@ -56,8 +54,6 @@ public class WordEditController {
   private final EmojiDao emojiDao;
 
   private final ImageDao imageDao;
-
-  private final SyllableDao syllableDao;
 
   private final WordContributionEventDao wordContributionEventDao;
 
@@ -171,12 +167,6 @@ public class WordEditController {
       );
 
       // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
-
-      // Delete syllables that are actual words
-      Syllable syllable = syllableDao.readByText(word.getText());
-      if (syllable != null) {
-        syllableDao.delete(syllable);
-      }
 
       return "redirect:/content/word/list#" + word.getId();
     }

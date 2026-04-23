@@ -7,7 +7,6 @@ import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,8 +35,6 @@ public class MainContentController {
 
   private final NumberDao numberDao;
 
-  private final SyllableDao syllableDao;
-
   private final WordDao wordDao;
 
   private final EmojiDao emojiDao;
@@ -60,7 +57,6 @@ public class MainContentController {
     model.addAttribute("soundCount", soundDao.readCount());
     model.addAttribute("letterSoundCount", letterSoundDao.readCount());
     model.addAttribute("numberCount", numberDao.readCount());
-    model.addAttribute("syllableCount", syllableDao.readCount());
     model.addAttribute("wordCount", wordDao.readCount());
     model.addAttribute("emojiCount", emojiDao.readCount());
     model.addAttribute("storyBookCount", storyBookDao.readCount());

@@ -231,14 +231,6 @@
        drop 
        foreign key FKe1bnu38w5m0dc0qkeuuxf4g5h;
 
-    alter table Syllable_Sound 
-       drop 
-       foreign key FKlfp5s4xc4wi7s7fo980027tl1;
-
-    alter table Syllable_Sound 
-       drop 
-       foreign key FK627nj3gkx5dn4xn9g4tmnmbdx;
-
     alter table Video_Letter 
        drop 
        foreign key FK426jmgm09qif0fhqke99ejl8c;
@@ -416,10 +408,6 @@
     drop table if exists StoryBookPeerReviewEvent;
 
     drop table if exists Student;
-
-    drop table if exists Syllable;
-
-    drop table if exists Syllable_Sound;
 
     drop table if exists Video;
 
@@ -890,23 +878,6 @@
         primary key (id)
     ) engine=InnoDB;
 
-    create table Syllable (
-       id bigint not null auto_increment,
-        contentStatus varchar(255),
-        peerReviewStatus varchar(255),
-        revisionNumber integer,
-        usageCount integer,
-        text varchar(255),
-        primary key (id)
-    ) engine=InnoDB;
-
-    create table Syllable_Sound (
-       Syllable_id bigint not null,
-        sounds_id bigint not null,
-        sounds_ORDER integer not null,
-        primary key (Syllable_id, sounds_ORDER)
-    ) engine=InnoDB;
-
     create table Video (
        id bigint not null auto_increment,
         contentStatus varchar(255),
@@ -1354,16 +1325,6 @@
        add constraint FKe1bnu38w5m0dc0qkeuuxf4g5h 
        foreign key (storyBookContributionEvent_id) 
        references StoryBookContributionEvent (id);
-
-    alter table Syllable_Sound 
-       add constraint FKlfp5s4xc4wi7s7fo980027tl1 
-       foreign key (sounds_id) 
-       references Sound (id);
-
-    alter table Syllable_Sound 
-       add constraint FK627nj3gkx5dn4xn9g4tmnmbdx 
-       foreign key (Syllable_id) 
-       references Syllable (id);
 
     alter table Video_Letter 
        add constraint FK426jmgm09qif0fhqke99ejl8c 

@@ -1,0 +1,4 @@
+# 2.6.155
+
+DROP TABLE IF EXISTS Syllable_Sound;
+DROP TABLE IF EXISTS Syllable;
