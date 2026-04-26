@@ -1,5 +1,5 @@
-ai.elimu:webapp:war:2.6.155-SNAPSHOT
-+- ai.elimu:model:jar:model-2.0.133:compile
+ai.elimu:webapp:war:2.6.157-SNAPSHOT
++- ai.elimu:model:jar:model-2.0.139:compile
 |  \- com.google.code.gson:gson:jar:2.13.2:compile
 |     \- com.google.errorprone:error_prone_annotations:jar:2.41.0:compile
 +- org.springframework:spring-context:jar:6.0.11:compile
@@ -16,7 +16,7 @@ ai.elimu:webapp:war:2.6.155-SNAPSHOT
 |     \- io.micrometer:micrometer-commons:jar:1.10.9:compile
 +- org.springframework:spring-webmvc:jar:6.0.11:compile
 +- org.apache.logging.log4j:log4j-api:jar:2.24.3:compile
-+- org.apache.logging.log4j:log4j-core:jar:2.24.3:compile
++- org.apache.logging.log4j:log4j-core:jar:2.25.3:compile
 +- org.apache.logging.log4j:log4j-slf4j2-impl:jar:2.24.3:runtime
 |  \- org.slf4j:slf4j-api:jar:2.0.16:compile
 +- commons-lang:commons-lang:jar:2.6:compile
