@@ -5,6 +5,14 @@
         <param-value>/WEB-INF/spring/applicationContext*.xml</param-value>
     </context-param>
     <listener>
+        <description>Handles Log4j Core lifecycle</description>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+        <!-- Log4jServletContextListener should be the first context listener to correctly handle
+             with ${web:attr.content_language} (see the issue #1982). See also
+             https://logging.apache.org/log4j/2.x/jakarta.html
+          -->
+    </listener>
+    <listener>
         <listener-class>ai.elimu.web.context.EnvironmentContextLoaderListener</listener-class>
     </listener>
     <servlet>
