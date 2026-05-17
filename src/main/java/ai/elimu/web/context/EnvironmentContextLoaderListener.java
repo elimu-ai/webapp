@@ -20,6 +20,7 @@ import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.ConfigHelper;
 
+import java.net.URISyntaxException;
 import java.net.URL;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.config.Configurator;
@@ -34,6 +35,8 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
     public static Environment env = Environment.DEV;
     
     public final static Properties PROPERTIES = new Properties();
+
+    private static final String FAILED_MESSAGE_TEMPLATE = "Failed to reconfigure logging to %s. ";
 
     private Logger logger = LogManager.getLogger();
 
@@ -57,19 +60,35 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         PROPERTIES.put("env", env);
         
         if (env == Environment.PROD) {
-            // Configure Log4j 2 so that it logs to a file instead of to the console
-            // See https://logging.apache.org/log4j/2.x/manual/customconfig.html#Configurator)
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            URL log4j2FileUrl = classLoader.getResource("log4j2_" + env + ".xml");
-            logger.info("log4j2FileUrl: " + log4j2FileUrl);
-            String log4j2FilePath = log4j2FileUrl.getFile();
-            logger.info("log4j2FilePath: " + log4j2FilePath);
-            Configurator.initialize(null, log4j2FilePath);
-            logger = LogManager.getLogger();
-            logger.info("log4j2FilePath: " + log4j2FilePath);
+            reconfigureLog4j();
         }
 
         super.contextInitialized(event);
+    }
+
+    /**
+     * Reconfigure Log4j 2 so that it logs to a file instead of to the console.
+     * 
+     * @see https://logging.apache.org/log4j/2.x/manual/customconfig.html#Configurator
+     */
+    private void reconfigureLog4j() {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        String log4j2FileName = "log4j2_" + env + ".xml";
+        URL log4j2FileUrl = classLoader.getResource(log4j2FileName);
+        if (log4j2FileUrl == null) {
+            logger.error(FAILED_MESSAGE_TEMPLATE.formatted(log4j2FileName)
+                    + "File could not be found.");
+            return;
+        }
+        logger.info("log4j2FileUrl: " + log4j2FileUrl);
+        try {
+            Configurator.reconfigure(log4j2FileUrl.toURI());
+            logger = LogManager.getLogger();
+            logger.info("log4j2FileUrl: " + log4j2FileUrl);
+        } catch (URISyntaxException e) {
+            logger.error(FAILED_MESSAGE_TEMPLATE.formatted(log4j2FileName)
+                    + "URL cannot be converted to a URI.", e);
+        }
     }
 
     @Override
