@@ -84,7 +84,7 @@
                                 console.log('letterSoundSounds: "' + letterSoundSounds + '"');
                                 if (letterSoundId != "") {
                                     $('#letterSoundsContainer').append('<input name="letterSounds" type="hidden" value="' + letterSoundId + '" />');
-                                    $('#letterSoundsContainer').append('<div class="chip">"' + letterSoundLetters + '"<br />↓<br />/' + letterSoundSounds + '/</div>');
+                                    $('#letterSoundsContainer').append('<div class="chip">/' + letterSoundSounds + '/<br />↓<br />"' + letterSoundLetters + '"</div>');
                                     $(this).val("");
                                 }
                             });
