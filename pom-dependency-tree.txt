@@ -1,4 +1,4 @@
-ai.elimu:webapp:war:2.6.158-SNAPSHOT
+ai.elimu:webapp:war:2.6.165-SNAPSHOT
 +- ai.elimu:model:jar:model-2.0.139:compile
 |  \- com.google.code.gson:gson:jar:2.13.2:compile
 |     \- com.google.errorprone:error_prone_annotations:jar:2.41.0:compile
@@ -15,11 +15,11 @@ ai.elimu:webapp:war:2.6.158-SNAPSHOT
 |  \- io.micrometer:micrometer-observation:jar:1.10.9:compile
 |     \- io.micrometer:micrometer-commons:jar:1.10.9:compile
 +- org.springframework:spring-webmvc:jar:6.0.11:compile
-+- org.apache.logging.log4j:log4j-api:jar:2.24.3:compile
-+- org.apache.logging.log4j:log4j-core:jar:2.25.3:compile
-+- org.apache.logging.log4j:log4j-slf4j2-impl:jar:2.24.3:runtime
-|  \- org.slf4j:slf4j-api:jar:2.0.16:compile
-+- org.apache.logging.log4j:log4j-jakarta-web:jar:2.25.3:runtime
++- org.apache.logging.log4j:log4j-api:jar:2.25.4:compile
++- org.apache.logging.log4j:log4j-core:jar:2.25.4:compile
++- org.apache.logging.log4j:log4j-slf4j2-impl:jar:2.25.4:runtime
+|  \- org.slf4j:slf4j-api:jar:2.0.17:compile
++- org.apache.logging.log4j:log4j-jakarta-web:jar:2.25.4:runtime
 +- commons-lang:commons-lang:jar:2.6:compile
 +- org.apache.commons:commons-csv:jar:1.14.0:compile
 |  +- commons-io:commons-io:jar:2.18.0:compile
@@ -96,7 +96,7 @@ ai.elimu:webapp:war:2.6.158-SNAPSHOT
 |  \- jakarta.validation:jakarta.validation-api:jar:3.0.2:compile
 +- jakarta.persistence:jakarta.persistence-api:jar:3.0.0:compile
 +- org.hsqldb:hsqldb:jar:2.7.4:compile
-+- org.mariadb.jdbc:mariadb-java-client:jar:2.7.12:compile
++- org.mariadb.jdbc:mariadb-java-client:jar:2.7.14:compile
 +- commons-dbcp:commons-dbcp:jar:1.4:compile
 |  \- commons-pool:commons-pool:jar:1.5.4:compile
 +- jakarta.servlet:jakarta.servlet-api:jar:5.0.0:provided
