@@ -227,7 +227,7 @@ mariadb webapp-ENG < webapp-ENG_2024-08-20.sql
 
 To automate backups of the database, you can add a cron job which runs a backup script once per day:
 
-Copy the content from [`backup-db.sh`](./elimu-ai/lang-ENG/backups/backup-db.sh) into the backup script:
+Copy the content from [`backup-db.sh`](./elimu-ai/lang-ENG/backups/backup-db.sh) into a script file:
 
     mkdir ~/.elimu-ai/lang-ENG/backups
     vi ~/.elimu-ai/lang-ENG/backups/backup-db.sh
