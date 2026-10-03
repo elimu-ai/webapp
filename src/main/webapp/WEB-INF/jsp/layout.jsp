@@ -282,7 +282,7 @@
                                             <c:if test="${status.index > 0}">
                                                 • 
                                             </c:if>
-                                            <a class="white-text" href="https://${supportedLanguage.isoCode}.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
+                                            <a class="white-text" href="http://${supportedLanguage.isoCode}.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
                                         </c:forEach>
                                     </c:otherwise>
                                 </c:choose><br />

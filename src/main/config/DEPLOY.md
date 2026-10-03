@@ -222,3 +222,24 @@ Restore database from a backup:
 ```bash
 mariadb webapp-ENG < webapp-ENG_2024-08-20.sql
 ```
+
+#### Daily Database Backup
+
+To automate backups of the database, you can add a cron job which runs a backup script once per day:
+
+Copy the content from [`backup-db.sh`](./elimu-ai/lang-ENG/backups/backup-db.sh) into a script file:
+
+    mkdir ~/.elimu-ai/lang-ENG/backups
+    vi ~/.elimu-ai/lang-ENG/backups/backup-db.sh
+
+Make the script executable:
+
+    chmod +x ~/.elimu-ai/lang-ENG/backups/backup-db.sh
+
+Next, add a cron job for running daily at 02:00 UTC:
+
+    crontab -e
+
+```bash
+00 02 * * * ~/.elimu-ai/lang-ENG/backups/backup-db.sh >> ~/.elimu-ai/lang-ENG/backups/crontab.log 2>&1
+```
