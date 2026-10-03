@@ -49,7 +49,7 @@ public class Word extends Content {
 
   public String toString() {
       WordGson wordGson = JpaToGsonConverter.getWordGson(this);
-      log.info("wordGson.getId(): " + wordGson.getId());
+      log.debug("wordGson.getId(): " + wordGson.getId());
       return wordGson.toString();
   }
 }
