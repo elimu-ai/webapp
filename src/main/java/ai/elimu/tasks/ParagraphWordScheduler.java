@@ -56,7 +56,7 @@ public class ParagraphWordScheduler {
           log.debug("word: " + word);
           words.add(word);
         }
-        log.info("words.size(): " + words.size());
+        log.debug("words.size(): " + words.size());
         storyBookParagraph.setWords(words);
 
         // Update the paragraph's list of Words in the database
