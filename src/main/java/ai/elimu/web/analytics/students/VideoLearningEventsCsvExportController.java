@@ -65,7 +65,7 @@ public class VideoLearningEventsCsvExportController {
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
       for (VideoLearningEvent event : videoLearningEvents) {
-        log.info("event.getId(): " + event.getId());
+        log.debug("event.getId(): " + event.getId());
         csvPrinter.printRecord(
             event.getId(),
             event.getTimestamp().getTimeInMillis() / 1_000,
