@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+mariadb-dump webapp-ENG > ~/.elimu-ai/lang-ENG/backups/webapp-ENG_`date +%Y"-"%m"-"%d`_structure.sql --no-data
 mariadb-dump webapp-ENG > ~/.elimu-ai/lang-ENG/backups/webapp-ENG_`date +%Y-%m-%d`.sql
 
 # Delete backups older than 30 days
