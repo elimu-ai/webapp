@@ -6,6 +6,7 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class StoryBookEditPage {
     
@@ -19,6 +20,7 @@ public class StoryBookEditPage {
 
     public void pressRandomAutoFillWordLink() {
         List<WebElement> links = driver.findElements(By.className("autoFillWordLink"));
+        assumeTrue(!links.isEmpty(), "No missing words found in selected storybook - skipping auto-fill test");
         int randomIndex = (int) (Math.random() * links.size());
         WebElement randomLink = links.get(randomIndex);
         randomLink.click();
