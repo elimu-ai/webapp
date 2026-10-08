@@ -99,6 +99,5 @@
         <p>
             To get started, you will need to install an Ethereum wallet. We recommend <a href="https://metamask.io/download.html" target="_blank">MetaMask</a>.
         </p>
-        <iframe style="border-radius: 8px;" width="100%" height="160" src="https://www.youtube.com/embed/YVgfHZMFFFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </content:aside>
