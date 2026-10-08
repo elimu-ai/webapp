@@ -2,9 +2,12 @@ package selenium.analytics.students.csv;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -36,8 +39,21 @@ public class StudentCsvExportTest {
         }
         
         driver = new ChromeDriver(chromeOptions);
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 
-        driver.get(DomainHelper.getBaseUrl() + "/analytics/students");
+        String url = DomainHelper.getBaseUrl() + "/analytics/students";
+        int attempts = 0;
+        while (true) {
+            try {
+                driver.get(url);
+                break;
+            } catch (TimeoutException e) {
+                if (++attempts >= 3) {
+                    throw e;
+                }
+                log.warn("Page load timed out (attempt " + attempts + "/3), retrying " + url);
+            }
+        }
         log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
     }
 
