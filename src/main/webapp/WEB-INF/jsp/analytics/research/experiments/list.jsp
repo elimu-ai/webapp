@@ -28,7 +28,9 @@
             </tbody>
         </table>
     </div>
-    <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a id="createButton" href="https://github.com/elimu-ai/model/blob/main/src/main/java/ai/elimu/model/v2/enums/analytics/research/ResearchExperiment.java" target="_blank" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add experiment"><i class="material-icons">add</i></a>
+    <div class="row">
+        <div class="col s12 left-align">
+            <a id="createButton" href="https://github.com/elimu-ai/model/blob/main/src/main/java/ai/elimu/model/v2/enums/analytics/research/ResearchExperiment.java" target="_blank" class="btn waves-effect waves-light"><i class="material-icons left">add</i>Add experiment</a>
+        </div>
     </div>
 </content:section>
