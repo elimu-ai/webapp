@@ -119,6 +119,12 @@
     <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
         <a name="ch-id-${storyBookChapter.id}"></a>
         <a class="storyBookChapterEditLink right" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/edit/${storyBookChapter.id}' />"><i class="material-icons" title="Edit chapter">edit</i></a>
+        <c:if test="${!status.first}">
+            <a class="storyBookChapterMoveUpLink right" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/move/${storyBookChapter.id}/up' />"><i class="material-icons" title="Move chapter up">arrow_upward</i></a>
+        </c:if>
+        <c:if test="${!status.last}">
+            <a class="storyBookChapterMoveDownLink right" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/move/${storyBookChapter.id}/down' />"><i class="material-icons" title="Move chapter down">arrow_downward</i></a>
+        </c:if>
         <h5 style="margin-top: 1em;" class="grey-text">Chapter&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
