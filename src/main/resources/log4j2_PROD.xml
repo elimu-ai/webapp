@@ -13,6 +13,12 @@
                             <pattern>[${web:attr.content_language}] %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
                         </PatternLayout>
                         <TimeBasedTriggeringPolicy />
+                        <DefaultRolloverStrategy>
+                            <Delete basePath="${sys:user.home}/.elimu-ai/lang-${web:attr.content_language}/logs" maxDepth="1">
+                                <IfFileName glob="webapp.log.*" />
+                                <IfLastModified age="30d" />
+                            </Delete>
+                        </DefaultRolloverStrategy>
                     </RollingFile>
                 </Route>
             </Routes>
