@@ -36,7 +36,7 @@
                             tension: 0.5
                         },
                         {
-                            data: [${fn:length(lettersoundAssessmentEvents)}, ${fn:length(wordAssessmentEvents)}, ${fn:length(numberAssessmentEvents)}, ${fn:length(storyBookAssessmentEvents)}, ${fn:length(videoAssessmentEvents)}],
+                            data: [${fn:length(letterSoundAssessmentEvents)}, ${fn:length(wordAssessmentEvents)}, ${fn:length(numberAssessmentEvents)}, ${fn:length(storyBookAssessmentEvents)}, ${fn:length(videoAssessmentEvents)}],
                             label: 'Assessment events',
                             backgroundColor: 'rgba(77,182,172, 0.5)', // #4db6ac teal lighten-2
                             tension: 0.5
@@ -182,7 +182,91 @@
             });
         </script>
         <h5>Letter-sound assessment events (${fn:length(letterSoundAssessmentEvents)})</h5>
-        ...
+        <canvas id="letterSoundAssessmentEventChart"></canvas>
+        <script>
+            const letterSoundAssessmentEventLabels = [
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
+            ];
+            const letterSoundAssessmentEventData = {
+                labels: letterSoundAssessmentEventLabels,
+                datasets: [{
+                    data: <c:out value="${letterSoundAssessmentEventCorrectCountList}" />,
+                    label: 'Correct',
+                    backgroundColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    tension: 0.5,
+                    fill: true
+                },{
+                    data: <c:out value="${letterSoundAssessmentEventIncorrectCountList}" />,
+                    label: 'Incorrect',
+                    backgroundColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                    borderColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                    tension: 0.5,
+                    fill: true
+                }]
+            };
+            const letterSoundAssessmentEventConfig = {
+                type: 'line',
+                data: letterSoundAssessmentEventData,
+                options: {
+                    scales: {
+                        y: {
+                            stacked: true
+                        }
+                    }
+                }
+            };
+            var letterSoundAssessmentEventCtx = document.getElementById('letterSoundAssessmentEventChart');
+            new Chart(letterSoundAssessmentEventCtx, letterSoundAssessmentEventConfig);
+        </script>
+        <table class="bordered highlight">
+            <thead>
+                <th>timestamp</th>
+                <th>package_name</th>
+                <th>mastery_score</th>
+                <th>time_spent_ms</th>
+                <th>letter_sound_letters</th>
+                <th>letter_sound_sounds</th>
+                <th>letter_sound_id</th>
+            </thead>
+            <tbody>
+                <c:forEach var="i" begin="0" end="4">
+                    <c:if test="${i < fn:length(letterSoundAssessmentEvents)}">
+                        <c:set var="letterSoundAssessmentEvent" value="${letterSoundAssessmentEvents[fn:length(letterSoundAssessmentEvents) - 1 - i]}" />
+                        <tr>
+                            <td>
+                                <fmt:formatDate value="${letterSoundAssessmentEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
+                            </td>
+                            <td>
+                                <code>${letterSoundAssessmentEvent.packageName}</code>
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${letterSoundAssessmentEvent.masteryScore != null && letterSoundAssessmentEvent.masteryScore < 0.5}">
+                                        <span data-badge-caption="${letterSoundAssessmentEvent.masteryScore}" class="new badge orange darken-2"></span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span data-badge-caption="${letterSoundAssessmentEvent.masteryScore}" class="new badge blue lighten-2"></span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <fmt:formatNumber value="${letterSoundAssessmentEvent.timeSpentMs}" /> ms
+                            </td>
+                            <td>
+                                ${letterSoundAssessmentEvent.letterSoundLetters}
+                            </td>
+                            <td>
+                                ${letterSoundAssessmentEvent.letterSoundSounds}
+                            </td>
+                            <td>
+                                ${letterSoundAssessmentEvent.letterSoundId}
+                            </td>
+                        </tr>
+                    </c:if>
+                </c:forEach>
+            </tbody>
+        </table>
 
         <div class="divider" style="margin: 2em 0;"></div>
 

@@ -101,20 +101,33 @@ public class StudentController {
     List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = letterSoundAssessmentEventDao.readAll(student.getAndroidId());
     model.addAttribute("letterSoundAssessmentEvents", letterSoundAssessmentEvents);
     List<Integer> letterSoundAssessmentEventCountList = new ArrayList<>();
+    List<Integer> letterSoundAssessmentEventCorrectCountList = new ArrayList<>();
+    List<Integer> letterSoundAssessmentEventIncorrectCountList = new ArrayList<>();
     if (!letterSoundAssessmentEvents.isEmpty()) {
       Map<String, Integer> eventCountByWeekMap = new HashMap<>();
+      Map<String, Integer> eventCorrectCountByWeekMap = new HashMap<>();
+      Map<String, Integer> eventIncorrectCountByWeekMap = new HashMap<>();
       for (LetterSoundAssessmentEvent event : letterSoundAssessmentEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
         eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+        if (event.getMasteryScore() != null && event.getMasteryScore() >= 0.5) {
+          eventCorrectCountByWeekMap.put(eventWeek, eventCorrectCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+        } else {
+          eventIncorrectCountByWeekMap.put(eventWeek, eventIncorrectCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+        }
       }
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
         letterSoundAssessmentEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
+        letterSoundAssessmentEventCorrectCountList.add(eventCorrectCountByWeekMap.getOrDefault(weekAsString, 0));
+        letterSoundAssessmentEventIncorrectCountList.add(eventIncorrectCountByWeekMap.getOrDefault(weekAsString, 0));
         week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
     model.addAttribute("letterSoundAssessmentEventCountList", letterSoundAssessmentEventCountList);
+    model.addAttribute("letterSoundAssessmentEventCorrectCountList", letterSoundAssessmentEventCorrectCountList);
+    model.addAttribute("letterSoundAssessmentEventIncorrectCountList", letterSoundAssessmentEventIncorrectCountList);
 
     // Prepare chart data - LetterSoundLearningEvents
     List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll(student.getAndroidId());
