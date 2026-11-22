@@ -1,0 +1,3 @@
+id,timestamp,package_name,mastery_score,time_spent_ms,additional_data,research_experiment,experiment_group,letter_sound_letters,letter_sound_sounds,letter_sound_id
+1,1795247724,ai.elimu.herufi,1.0,3402,,,,"[ห]","[h]",12
+2,1795247731,ai.elimu.herufi,0.0,5871,,,,"[ล]","[l]",15
