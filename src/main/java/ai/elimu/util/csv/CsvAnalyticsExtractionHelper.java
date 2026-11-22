@@ -155,7 +155,7 @@ public class CsvAnalyticsExtractionHelper {
 
                 LetterSoundAssessmentEvent letterSoundAssessmentEvent = new LetterSoundAssessmentEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp").substring(0, 10)) * 1_000;
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 letterSoundAssessmentEvent.setTimestamp(timestamp);
