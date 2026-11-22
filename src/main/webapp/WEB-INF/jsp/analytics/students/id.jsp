@@ -126,7 +126,7 @@
                 labels: letterIdentificationSpeedLabels,
                 datasets: [{
                     data: <c:out value="${letterIdentificationSpeedAvgList_kukariri}" />,
-                    label: 'clspm (kukariri)',
+                    label: 'clspm (herufi)',
                     backgroundColor: 'rgba(100,181,246, 0.8)', // #64b5f6 blue lighten-2
                     borderColor: 'rgba(100,181,246, 0.8)', // #64b5f6 blue lighten-2
                     borderWidth: 4,

@@ -374,7 +374,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     LetterSoundAssessmentEvent letterSoundAssessmentEvent = new LetterSoundAssessmentEvent();
                     letterSoundAssessmentEvent.setTimestamp((Calendar) week.clone());
                     letterSoundAssessmentEvent.setAndroidId(student.getAndroidId());
-                    letterSoundAssessmentEvent.setPackageName("ai.elimu.kukariri");
+                    letterSoundAssessmentEvent.setPackageName("ai.elimu.herufi");
                     letterSoundAssessmentEvent.setMasteryScore((float) (int) (Math.random() * 2));
                     letterSoundAssessmentEvent.setTimeSpentMs((long) (Math.random() * 5_000));
                     if (weekCount > 26/2) {
