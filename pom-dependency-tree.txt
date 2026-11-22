@@ -1,4 +1,4 @@
-ai.elimu:webapp:war:2.7.0-SNAPSHOT
+ai.elimu:webapp:war:2.7.3-SNAPSHOT
 +- ai.elimu:model:jar:model-2.0.141:compile
 |  \- com.google.code.gson:gson:jar:2.13.2:compile
 |     \- com.google.errorprone:error_prone_annotations:jar:2.41.0:compile
@@ -37,7 +37,7 @@ ai.elimu:webapp:war:2.7.0-SNAPSHOT
 |  \- com.fasterxml.jackson.core:jackson-databind:jar:2.14.0:compile
 |     +- com.fasterxml.jackson.core:jackson-annotations:jar:2.14.0:compile
 |     \- com.fasterxml.jackson.core:jackson-core:jar:2.14.0:compile
-+- org.json:json:jar:20231013:compile
++- org.json:json:jar:20260719:compile
 +- com.konghq:unirest-java-core:jar:4.4.5:compile
 +- org.apache.httpcomponents.client5:httpclient5:jar:5.6.3:compile
 |  +- org.apache.httpcomponents.core5:httpcore5:jar:5.4.3:compile

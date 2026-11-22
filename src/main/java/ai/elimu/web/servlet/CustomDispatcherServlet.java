@@ -5,6 +5,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.NumberAssessmentEventDao;
@@ -21,6 +22,7 @@ import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordLearningEventDao;
+import ai.elimu.entity.analytics.LetterSoundAssessmentEvent;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.NumberAssessmentEvent;
 import ai.elimu.entity.analytics.NumberLearningEvent;
@@ -355,6 +357,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         calendar6MonthsAgo.add(Calendar.MONTH, -6);
         Calendar calendarNow = Calendar.getInstance();
         Calendar week = (Calendar) calendar6MonthsAgo.clone();
+        LetterSoundAssessmentEventDao letterSoundAssessmentEventDao = (LetterSoundAssessmentEventDao) webApplicationContext.getBean("letterSoundAssessmentEventDao");
         LetterSoundLearningEventDao letterSoundLearningEventDao = (LetterSoundLearningEventDao) webApplicationContext.getBean("letterSoundLearningEventDao");
         WordAssessmentEventDao wordAssessmentEventDao = (WordAssessmentEventDao) webApplicationContext.getBean("wordAssessmentEventDao");
         WordLearningEventDao wordLearningEventDao = (WordLearningEventDao) webApplicationContext.getBean("wordLearningEventDao");
@@ -366,6 +369,25 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         while (!week.after(calendarNow)) {
             List<Student> students = studentDao.readAll();
             for (Student student : students) {
+                int randomNumberOfLetterSoundAssessmentEvents = (int) (Math.random() * 10);
+                for (int i = 0; i < randomNumberOfLetterSoundAssessmentEvents; i++) {
+                    LetterSoundAssessmentEvent letterSoundAssessmentEvent = new LetterSoundAssessmentEvent();
+                    letterSoundAssessmentEvent.setTimestamp((Calendar) week.clone());
+                    letterSoundAssessmentEvent.setAndroidId(student.getAndroidId());
+                    letterSoundAssessmentEvent.setPackageName("ai.elimu.herufi");
+                    letterSoundAssessmentEvent.setMasteryScore((float) (int) (Math.random() * 2));
+                    letterSoundAssessmentEvent.setTimeSpentMs((long) (Math.random() * 5_000));
+                    if (weekCount > 26/2) {
+                        letterSoundAssessmentEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                        letterSoundAssessmentEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
+                    }
+                    letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundM.getLetters().stream().map(Letter::getText).toList());
+                    letterSoundAssessmentEvent.setLetterSoundSounds(letterSoundM.getSounds().stream().map(Sound::getValueIpa).toList());
+                    letterSoundAssessmentEvent.setLetterSoundId(letterSoundM.getId());
+                    letterSoundAssessmentEvent.setLetterSound(letterSoundM);
+                    letterSoundAssessmentEventDao.create(letterSoundAssessmentEvent);
+                }
+
                 int randomNumberOfLetterSoundLearningEvents = (int) (Math.random() * 10);
                 for (int i = 0; i < randomNumberOfLetterSoundLearningEvents; i++) {
                     LetterSoundLearningEvent letterSoundLearningEvent = new LetterSoundLearningEvent();
