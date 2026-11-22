@@ -23,6 +23,9 @@
     <div class="col s5 m7 l8">
         <div class="card-panel">
             <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+            <script>
+                Chart.defaults.scales.linear.beginAtZero = true;
+            </script>
             <canvas id="chart"></canvas>
             <script>
                 var ctx = document.getElementById('chart');
