@@ -1,4 +1,4 @@
-package ai.elimu.web.application;
+package ai.elimu.web;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.entity.application.Application;
@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Lists the active Android applications within each EGRA (literacy) and EGMA (numeracy) skill category.
  */
 @Controller
-@RequestMapping("/skill-categorization")
+@RequestMapping("/apps")
 @RequiredArgsConstructor
 @Slf4j
-public class SkillCategorizationController {
+public class AppsController {
 
   private final ApplicationDao applicationDao;
 
@@ -62,6 +62,6 @@ public class SkillCategorizationController {
     model.addAttribute("literacySkillApplicationsMap", literacySkillApplicationsMap);
     model.addAttribute("numeracySkillApplicationsMap", numeracySkillApplicationsMap);
 
-    return "application/skill-categorization";
+    return "apps";
   }
 }

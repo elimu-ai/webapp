@@ -1,7 +1,3 @@
 body {
     background-image: url(../../../static/img/background.jpg);
 }
-
-#skillCategorizationPage .skillName {
-    text-transform: capitalize;
-}
