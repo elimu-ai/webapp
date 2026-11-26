@@ -51,6 +51,7 @@
                         <li class="divider"></li>
                         <li class="grey-text"><b>Applications</b></li>
                         <li><a href="<spring:url value='/application/list' />"><i class="material-icons left">android</i>Applications</a></li>
+                        <li><a href="<spring:url value='/skill-categorization' />"><i class="material-icons left">category</i>Skill categorization</a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/application' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
