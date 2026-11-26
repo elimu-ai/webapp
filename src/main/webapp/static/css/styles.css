@@ -237,7 +237,8 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 a,
 .dropdown-content li > a,
 .dropdown-content li > span,
-.input-field .prefix.active {
+.input-field .prefix.active,
+.collection a.collection-item {
     color: #673ab7;
 }
 
