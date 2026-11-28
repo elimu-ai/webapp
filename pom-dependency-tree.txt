@@ -1,5 +1,5 @@
-ai.elimu:webapp:war:2.7.9-SNAPSHOT
-+- ai.elimu:model:jar:model-2.1.1:compile
+ai.elimu:webapp:war:2.7.10-SNAPSHOT
++- ai.elimu:model:jar:model-2.1.2:compile
 |  \- com.google.code.gson:gson:jar:2.15.0:compile
 |     \- com.google.errorprone:error_prone_annotations:jar:2.50.0:compile
 +- org.springframework:spring-context:jar:6.0.11:compile
