@@ -1,5 +1,5 @@
 <content:title>
-    Letter-sound correspondences (${fn:length(letterSounds)})
+    Letter-sounds (${fn:length(letterSounds)})
 </content:title>
 
 <content:section cssId="letterSoundListPage">
@@ -25,9 +25,9 @@
             <table class="bordered highlight">
                 <thead>
                     <th>Usage count</th>
-                    <th>Letters</th>
+                    <th>Sound</th>
                     <th></th>
-                    <th>Sounds</th>
+                    <th>Letter(s)</th>
                     <th>Revision</th>
                     <th>Edit</th>
                 </thead>
@@ -40,13 +40,13 @@
                                 ${letterSound.usageCount}
                             </td>
                             <td style="font-size: 2em;">
-                                " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a> </c:forEach> "
+                                / <c:forEach var="sound" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${sound.id}' />">${sound.valueIpa}</a> </c:forEach> /
                             </td>
                             <td style="font-size: 2em;">
                                 ➞
                             </td>
                             <td style="font-size: 2em;">
-                                / <c:forEach var="sound" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${sound.id}' />">${sound.valueIpa}</a> </c:forEach> /
+                                " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a> </c:forEach> "
                             </td>
                             <td>
                                 <p>#${letterSound.revisionNumber}</p>
@@ -69,6 +69,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a id="createButton" href="<spring:url value='/content/letter-sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add letter-sound correspondence"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/letter-sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add sound-to-letter correspondence"><i class="material-icons">add</i></a>
     </div>
 </content:section>

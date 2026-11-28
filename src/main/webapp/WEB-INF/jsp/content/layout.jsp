@@ -138,7 +138,7 @@
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter-sound/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/letter-sound/list' />">Letter-sound correspondences</a>
+                                <a class="breadcrumb" href="<spring:url value='/content/letter-sound/list' />">Letter-sounds</a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
