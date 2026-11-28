@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Lists the active Android applications within each EGRA (literacy) and EGMA (numeracy) skill category.
+ * Lists the active infrastructural Android applications, followed by the active applications within each EGRA (literacy) and EGMA
+ * (numeracy) skill category.
  */
 @Controller
 @RequestMapping("/apps")
@@ -35,6 +36,10 @@ public class AppsController {
     List<Application> activeApplications = applicationDao.readAllByStatus(ApplicationStatus.ACTIVE);
     log.info("activeApplications.size(): " + activeApplications.size());
     activeApplications.sort(Comparator.comparing(Application::getPackageName));
+
+    List<Application> infrastructuralApplications = activeApplications.stream()
+        .filter(Application::isInfrastructural)
+        .toList();
 
     // Include all skills, also the ones that no application covers yet
     Map<LiteracySkill, List<Application>> literacySkillApplicationsMap = new LinkedHashMap<>();
@@ -59,6 +64,7 @@ public class AppsController {
       }
     }
 
+    model.addAttribute("infrastructuralApplications", infrastructuralApplications);
     model.addAttribute("literacySkillApplicationsMap", literacySkillApplicationsMap);
     model.addAttribute("numeracySkillApplicationsMap", numeracySkillApplicationsMap);
 
