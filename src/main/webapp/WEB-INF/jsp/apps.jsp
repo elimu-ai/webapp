@@ -3,9 +3,9 @@
 </content:title>
 
 <content:section cssId="applicationsPage">
-    <div class="section row">
+    <div class="section row center-align">
         <div class="col s12">
-            <h5>Infrastructural Apps ⚙️ (${fn:length(infrastructuralApplications)})</h5>
+            <h5>Infrastructural Apps ⚙️</h5>
         </div>
         <c:choose>
             <c:when test="${empty infrastructuralApplications}">
