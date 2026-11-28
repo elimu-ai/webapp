@@ -25,7 +25,7 @@
             <table class="bordered highlight">
                 <thead>
                     <th>Usage count</th>
-                    <th>Sound</th>
+                    <th>Sound(s)</th>
                     <th></th>
                     <th>Letter(s)</th>
                     <th>Revision</th>

@@ -19,7 +19,7 @@
             
             <div class="row">
                 <div class="col s12">
-                    <label>Sound</label><br />
+                    <label>Sound(s)</label><br />
                     /<span id="soundsContainer">
                         <c:forEach var="sound" items="${letterSound.sounds}">
                             <input name="sounds" type="hidden" value="${sound.id}" />
