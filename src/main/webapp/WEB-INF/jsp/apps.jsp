@@ -3,6 +3,30 @@
 </content:title>
 
 <content:section cssId="applicationsPage">
+    <div class="section row center-align">
+        <div class="col s12">
+            <h5>Infrastructural Apps ⚙️</h5>
+        </div>
+        <c:choose>
+            <c:when test="${empty infrastructuralApplications}">
+                <div class="col s12">
+                    <p class="grey-text">No applications</p>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <c:forEach var="application" items="${infrastructuralApplications}">
+                    <div class="col s12 m6 l4">
+                        <div class="collection">
+                            <a class="collection-item deep-purple lighten-4" target="_blank" href="<spring:url value='https://github.com/elimu-ai/${application.repoName}' />"><code>${application.packageName}</code></a>
+                        </div>
+                    </div>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+    </div>
+
+    <div class="divider"></div>
+
     <div class="section row">
         <div class="col s12 m6">
             <h5>Literacy Apps/Games 📚🕹</h5>
