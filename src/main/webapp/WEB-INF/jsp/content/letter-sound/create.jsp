@@ -1,5 +1,5 @@
 <content:title>
-    Add letter-sound correspondence
+    Add
 </content:title>
 
 <content:section cssId="letterSoundCreatePage">
@@ -7,71 +7,10 @@
     <div class="card-panel">
         <form:form modelAttribute="letterSound">
             <tag:formErrors modelAttribute="letterSound" />
-            
-            <div class="row">
-                <div class="col s12">
-                    <label>Letters</label><br />
-                    "<span id="lettersContainer">
-                        <c:forEach var="letter" items="${letterSound.letters}">
-                            <input name="letters" type="hidden" value="${letter.id}" />
-                            <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}"
-                                 style="font-size: 2rem; padding: 1rem; height: auto;">
-                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">
-                                    ${letter.text} 
-                                </a>
-                                <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
-                                    <i class="close material-icons">clear</i>
-                                </a>
-                            </div>
-                        </c:forEach>
-                        <script>
-                            $(function() {
-                                $('.letterDeleteLink').on("click", function() {
-                                    console.log('.letterDeleteLink on click');
-                                    
-                                    var letterId = $(this).attr("data-letterid");
-                                    console.log('letterId: ' + letterId);
-                                    
-                                    $(this).parent().remove();
-                                    
-                                    var $hiddenInput = $('input[name="letters"][value="' + letterId + '"]');
-                                    $hiddenInput.remove();
-                                });
-                            });
-                        </script>
-                    </span>"
 
-                    <select id="letters" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
-                        <option value="">-- Select --</option>
-                        <c:forEach var="letter" items="${letters}">
-                            <option value="${letter.id}"><c:out value="${letter.text}" /></option>
-                        </c:forEach>
-                    </select>
-                    <script>
-                        $(function() {
-                            $('#letters').on("change", function() {
-                                console.log('#letters on change');
-                                
-                                var letterId = $(this).val();
-                                console.log('letterId: ' + letterId);
-                                var letterText = $(this).find('option[value="' + letterId + '"]').text();
-                                console.log('letterText: ' + letterText);
-                                if (letterId != "") {
-                                    $('#lettersContainer').append('<input name="letters" type="hidden" value="' + letterId + '" />');
-                                    $('#lettersContainer').append('<div class="chip" style="font-size: 2rem; padding: 1rem; height: auto;">' + letterText + '</div>');
-                                    $(this).val("");
-                                }
-                            });
-                        });
-                    </script>
-                    
-                    <a href="<spring:url value='/content/letter/create' />" target="_blank">Add letter <i class="material-icons">launch</i></a>
-                </div>
-            </div>
-            
             <div class="row">
                 <div class="col s12">
-                    <label>Sounds</label><br />
+                    <label>Sound(s)</label><br />
                     /<span id="soundsContainer">
                         <c:forEach var="sound" items="${letterSound.sounds}">
                             <input name="sounds" type="hidden" value="${sound.id}" />
@@ -127,6 +66,67 @@
                     </script>
                     
                     <a href="<spring:url value='/content/sound/create' />" target="_blank">Add sound <i class="material-icons">launch</i></a>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col s12">
+                    <label>Letter(s)</label><br />
+                    "<span id="lettersContainer">
+                        <c:forEach var="letter" items="${letterSound.letters}">
+                            <input name="letters" type="hidden" value="${letter.id}" />
+                            <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}"
+                                 style="font-size: 2rem; padding: 1rem; height: auto;">
+                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">
+                                    ${letter.text} 
+                                </a>
+                                <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
+                                    <i class="close material-icons">clear</i>
+                                </a>
+                            </div>
+                        </c:forEach>
+                        <script>
+                            $(function() {
+                                $('.letterDeleteLink').on("click", function() {
+                                    console.log('.letterDeleteLink on click');
+                                    
+                                    var letterId = $(this).attr("data-letterid");
+                                    console.log('letterId: ' + letterId);
+                                    
+                                    $(this).parent().remove();
+                                    
+                                    var $hiddenInput = $('input[name="letters"][value="' + letterId + '"]');
+                                    $hiddenInput.remove();
+                                });
+                            });
+                        </script>
+                    </span>"
+
+                    <select id="letters" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
+                        <option value="">-- Select --</option>
+                        <c:forEach var="letter" items="${letters}">
+                            <option value="${letter.id}"><c:out value="${letter.text}" /></option>
+                        </c:forEach>
+                    </select>
+                    <script>
+                        $(function() {
+                            $('#letters').on("change", function() {
+                                console.log('#letters on change');
+                                
+                                var letterId = $(this).val();
+                                console.log('letterId: ' + letterId);
+                                var letterText = $(this).find('option[value="' + letterId + '"]').text();
+                                console.log('letterText: ' + letterText);
+                                if (letterId != "") {
+                                    $('#lettersContainer').append('<input name="letters" type="hidden" value="' + letterId + '" />');
+                                    $('#lettersContainer').append('<div class="chip" style="font-size: 2rem; padding: 1rem; height: auto;">' + letterText + '</div>');
+                                    $(this).val("");
+                                }
+                            });
+                        });
+                    </script>
+                    
+                    <a href="<spring:url value='/content/letter/create' />" target="_blank">Add letter <i class="material-icons">launch</i></a>
                 </div>
             </div>
             

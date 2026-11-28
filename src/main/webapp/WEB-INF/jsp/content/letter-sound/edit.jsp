@@ -1,5 +1,5 @@
 <content:title>
-    Edit letter-sound correspondence
+    Edit
 </content:title>
 
 <content:section cssId="letterSoundEditPage">
@@ -19,7 +19,68 @@
             
             <div class="row">
                 <div class="col s12">
-                    <label>Letters</label><br />
+                    <label>Sound(s)</label><br />
+                    /<span id="soundsContainer">
+                        <c:forEach var="sound" items="${letterSound.sounds}">
+                            <input name="sounds" type="hidden" value="${sound.id}" />
+                            <div class="chip" data-soundid="${sound.id}" data-soundvalue="${sound.valueIpa}"
+                                 style="font-size: 2rem; padding: 1rem; height: auto;">
+                                <a href="<spring:url value='/content/sound/edit/${sound.id}' />">
+                                    ${sound.valueIpa} 
+                                </a>
+                                <a href="#" class="soundDeleteLink" data-soundid="${sound.id}">
+                                    <i class="close material-icons">clear</i>
+                                </a>
+                            </div>
+                        </c:forEach>
+                        <script>
+                            $(function() {
+                                $('.soundDeleteLink').on("click", function() {
+                                    console.log('.soundDeleteLink on click');
+                                    
+                                    var soundId = $(this).attr("data-soundid");
+                                    console.log('soundId: ' + soundId);
+                                    
+                                    $(this).parent().remove();
+                                    
+                                    var $hiddenInput = $('input[name="sounds"][value="' + soundId + '"]');
+                                    $hiddenInput.remove();
+                                });
+                            });
+                        </script>
+                    </span>/
+
+                    <select id="sounds" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
+                        <option value="">-- Select --</option>
+                        <c:forEach var="sound" items="${sounds}">
+                            <option value="${sound.id}"><c:out value="${sound.valueIpa}" /></option>
+                        </c:forEach>
+                    </select>
+                    <script>
+                        $(function() {
+                            $('#sounds').on("change", function() {
+                                console.log('#sounds on change');
+                                
+                                var soundId = $(this).val();
+                                console.log('soundId: ' + soundId);
+                                var soundValueIpa = $(this).find('option[value="' + soundId + '"]').text();
+                                console.log('soundValueIpa: ' + soundValueIpa);
+                                if (soundId != "") {
+                                    $('#soundsContainer').append('<input name="sounds" type="hidden" value="' + soundId + '" />');
+                                    $('#soundsContainer').append('<div class="chip" style="font-size: 2rem; padding: 1rem; height: auto;">' + soundValueIpa + '</div>');
+                                    $(this).val("");
+                                }
+                            });
+                        });
+                    </script>
+                    
+                    <a href="<spring:url value='/content/sound/create' />" target="_blank">Add sound <i class="material-icons">launch</i></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <label>Letter(s)</label><br />
                     "<span id="lettersContainer">
                         <c:forEach var="letter" items="${letterSound.letters}">
                             <input name="letters" type="hidden" value="${letter.id}" />
@@ -79,67 +140,6 @@
             </div>
             
             <div class="row">
-                <div class="col s12">
-                    <label>Sounds</label><br />
-                    /<span id="soundsContainer">
-                        <c:forEach var="sound" items="${letterSound.sounds}">
-                            <input name="sounds" type="hidden" value="${sound.id}" />
-                            <div class="chip" data-soundid="${sound.id}" data-soundvalue="${sound.valueIpa}"
-                                 style="font-size: 2rem; padding: 1rem; height: auto;">
-                                <a href="<spring:url value='/content/sound/edit/${sound.id}' />">
-                                    ${sound.valueIpa} 
-                                </a>
-                                <a href="#" class="soundDeleteLink" data-soundid="${sound.id}">
-                                    <i class="close material-icons">clear</i>
-                                </a>
-                            </div>
-                        </c:forEach>
-                        <script>
-                            $(function() {
-                                $('.soundDeleteLink').on("click", function() {
-                                    console.log('.soundDeleteLink on click');
-                                    
-                                    var soundId = $(this).attr("data-soundid");
-                                    console.log('soundId: ' + soundId);
-                                    
-                                    $(this).parent().remove();
-                                    
-                                    var $hiddenInput = $('input[name="sounds"][value="' + soundId + '"]');
-                                    $hiddenInput.remove();
-                                });
-                            });
-                        </script>
-                    </span>/
-
-                    <select id="sounds" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
-                        <option value="">-- Select --</option>
-                        <c:forEach var="sound" items="${sounds}">
-                            <option value="${sound.id}"><c:out value="${sound.valueIpa}" /></option>
-                        </c:forEach>
-                    </select>
-                    <script>
-                        $(function() {
-                            $('#sounds').on("change", function() {
-                                console.log('#sounds on change');
-                                
-                                var soundId = $(this).val();
-                                console.log('soundId: ' + soundId);
-                                var soundValueIpa = $(this).find('option[value="' + soundId + '"]').text();
-                                console.log('soundValueIpa: ' + soundValueIpa);
-                                if (soundId != "") {
-                                    $('#soundsContainer').append('<input name="sounds" type="hidden" value="' + soundId + '" />');
-                                    $('#soundsContainer').append('<div class="chip" style="font-size: 2rem; padding: 1rem; height: auto;">' + soundValueIpa + '</div>');
-                                    $(this).val("");
-                                }
-                            });
-                        });
-                    </script>
-                    
-                    <a href="<spring:url value='/content/sound/create' />" target="_blank">Add sound <i class="material-icons">launch</i></a>
-                </div>
-            </div>
-            
-            <div class="row">
                 <div class="input-field col s12">
                     <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
@@ -162,7 +162,7 @@
         
         <form action="<spring:url value='/content/letter-sound-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
-                Do you approve the quality of this letter-sound correspondence?
+                Do you approve the quality of this sound-to-letter correspondence?
             </p>
             
             <input type="hidden" name="letterSoundContributionEventId" value="${letterSoundContributionEvents[0].id}" />
@@ -331,7 +331,7 @@
         </thead>
         <tbody>
             <c:forEach var="word" items="${words}">
-                <%-- Check if the current letter-sound correspondence is used by the word. --%>
+                <%-- Check if the current sound-to-letter correspondence is used by the word. --%>
                 <c:set var="isUsedByWord" value="false" />
                 <c:forEach var="lsc" items="${word.letterSounds}">
                     <c:if test="${lsc.id == letterSound.id}">
